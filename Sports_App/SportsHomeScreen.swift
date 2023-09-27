@@ -9,7 +9,17 @@ import UIKit
 
 class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var toggleBtn: UIButton!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    let sports: [Sports] = [
+        Sports(title: "Football", image: "football"),
+        Sports(title: "Basketball", image: "basketball"),
+        Sports(title: "Cricket", image: "cricket"),
+        Sports(title: "Tennis", image: "tennis"),
+    ]
+    var isToggle: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +40,31 @@ class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollection
     }
     */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return sports.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell1", for: indexPath) as! CustomCollectionViewCell
-        cell.imgView.image = UIImage(named: "football")
-        cell.collectionViewItemLabel.text = "Football"
+        let sport = sports[indexPath.row]
+        cell.imgView.image = UIImage(named: sport.image ?? "sports")
+        cell.collectionViewItemLabel.text = sport.title
         return cell
     }
     
     @IBAction func toggleHomeScreen(_ sender: Any) {
+        isToggle.toggle()
+        
+        if isToggle {
+            let itemWidth = (collectionView.frame.size.width - 40) / 2
+            flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 10, right: 12)
+            toggleBtn.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        } else {
+            flowLayout.itemSize = CGSize(width: 368, height: 135)
+            toggleBtn.setImage(UIImage(systemName: "rectangle.grid.2x2"), for: .normal)
+        }
+        
+        collectionView.reloadData()
     }
     
 }

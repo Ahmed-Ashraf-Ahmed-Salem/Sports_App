@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="45c-GI-E4C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CX3-DS-VOF">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uOW-gT-g0V">
-                                <rect key="frame" x="0.0" y="101.33333333333331" width="390" height="659.66666666666674"/>
+                                <rect key="frame" x="0.0" y="102" width="390" height="659"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PQI-AJ-e87">
                                     <size key="itemSize" width="368" height="135"/>
@@ -141,19 +141,21 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTu-bB-AjY">
-                                <rect key="frame" x="322" y="47" width="53" height="34.333333333333343"/>
+                                <rect key="frame" x="320.33333333333331" y="47" width="54.666666666666686" height="35"/>
+                                <color key="tintColor" red="0.024229738630000001" green="0.058464285140000002" blue="0.65161456480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="rectangle.grid.2x2" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="black"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="toggleHomeScreen:" destination="xOg-4z-omM" eventType="touchUpInside" id="flG-up-Jnh"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayx-AI-W2w">
-                                <rect key="frame" x="170" y="52.000000000000007" width="50.333333333333343" height="29.333333333333336"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="156" y="52" width="78.333333333333314" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" red="0.024229738630000001" green="0.058464285140000002" blue="0.65161456480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -165,6 +167,7 @@
                             <constraint firstItem="uOW-gT-g0V" firstAttribute="leading" secondItem="v9N-NS-aBW" secondAttribute="leading" id="5cD-mF-8mK"/>
                             <constraint firstItem="v9N-NS-aBW" firstAttribute="trailing" secondItem="fTu-bB-AjY" secondAttribute="trailing" constant="15" id="CUT-iT-XSI"/>
                             <constraint firstItem="v9N-NS-aBW" firstAttribute="trailing" secondItem="uOW-gT-g0V" secondAttribute="trailing" id="HEc-lf-E0y"/>
+                            <constraint firstItem="Ayx-AI-W2w" firstAttribute="centerX" secondItem="cko-Lm-ce9" secondAttribute="centerX" id="Ngc-hu-Cg6"/>
                             <constraint firstItem="fTu-bB-AjY" firstAttribute="top" secondItem="v9N-NS-aBW" secondAttribute="top" id="Uay-yp-N0r"/>
                             <constraint firstItem="Ayx-AI-W2w" firstAttribute="centerX" secondItem="v9N-NS-aBW" secondAttribute="centerX" id="Uke-Kk-Hsg"/>
                             <constraint firstItem="Ayx-AI-W2w" firstAttribute="top" secondItem="v9N-NS-aBW" secondAttribute="top" constant="5" id="nVF-AF-I2v"/>
@@ -174,6 +177,8 @@
                     <tabBarItem key="tabBarItem" title="Sports" image="sportscourt" catalog="system" id="z3f-Qn-kpz"/>
                     <connections>
                         <outlet property="collectionView" destination="uOW-gT-g0V" id="Cam-DB-7BE"/>
+                        <outlet property="flowLayout" destination="PQI-AJ-e87" id="vhM-nn-vHP"/>
+                        <outlet property="toggleBtn" destination="fTu-bB-AjY" id="NRj-Xx-IrD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxS-gO-kaG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
