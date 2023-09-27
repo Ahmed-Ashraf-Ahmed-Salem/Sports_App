@@ -20,10 +20,11 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1VA-PF-I3O">
                         <rect key="frame" x="0.0" y="0.0" width="295" height="106"/>
                         <color key="tintColor" systemColor="tintColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMF-iS-0GU">
+                        <rect key="frame" x="0.0" y="0.0" width="295" height="106"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lur-NL-4W6">
                         <rect key="frame" x="115.66666666666667" y="38" width="63.666666666666671" height="30"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -34,14 +35,23 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="LMF-iS-0GU" secondAttribute="trailing" id="31b-55-m1X"/>
                 <constraint firstItem="lur-NL-4W6" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="8i0-ng-BJk"/>
                 <constraint firstItem="lur-NL-4W6" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="I1M-NE-Tcj"/>
                 <constraint firstItem="1VA-PF-I3O" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="KkE-Ac-f9h"/>
+                <constraint firstItem="LMF-iS-0GU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="MTi-ic-Gq9"/>
                 <constraint firstAttribute="bottom" secondItem="1VA-PF-I3O" secondAttribute="bottom" id="Ufk-2t-ucJ"/>
                 <constraint firstAttribute="trailing" secondItem="1VA-PF-I3O" secondAttribute="trailing" id="WCd-zv-Q6B"/>
+                <constraint firstItem="LMF-iS-0GU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cFO-22-FY6"/>
                 <constraint firstItem="1VA-PF-I3O" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cd7-TG-BEq"/>
+                <constraint firstAttribute="bottom" secondItem="LMF-iS-0GU" secondAttribute="bottom" id="uIn-1H-hvU"/>
             </constraints>
             <size key="customSize" width="295" height="106"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="15"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="collectionViewItemLabel" destination="lur-NL-4W6" id="IV6-qu-2FP"/>
                 <outlet property="imgView" destination="1VA-PF-I3O" id="I5A-3a-9hg"/>

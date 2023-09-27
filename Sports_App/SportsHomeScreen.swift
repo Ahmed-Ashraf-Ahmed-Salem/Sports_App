@@ -27,6 +27,11 @@ class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollection
         collectionView.dataSource = self
         // Do any additional setup after loading the view.
         collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "mainCell1")
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateCollectionViewLayout()
     }
     
 
@@ -57,14 +62,16 @@ class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollection
     */
     @IBAction func toggleHomeScreen(_ sender: Any) {
         isToggle.toggle()
-        
+        updateCollectionViewLayout()
+    }
+    
+    func updateCollectionViewLayout(){
         if isToggle {
             let itemWidth = (collectionView.frame.size.width - 40) / 2
             flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-            flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 10, right: 12)
             toggleBtn.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         } else {
-            flowLayout.itemSize = CGSize(width: 368, height: 135)
+            flowLayout.itemSize = CGSize(width: collectionView.frame.size.width - 24, height: 135)
             toggleBtn.setImage(UIImage(systemName: "rectangle.grid.2x2"), for: .normal)
         }
         
