@@ -50,7 +50,11 @@ class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollection
         cell.collectionViewItemLabel.text = sport.title
         return cell
     }
-    
+    /*
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        <#code#>
+    }
+    */
     @IBAction func toggleHomeScreen(_ sender: Any) {
         isToggle.toggle()
         

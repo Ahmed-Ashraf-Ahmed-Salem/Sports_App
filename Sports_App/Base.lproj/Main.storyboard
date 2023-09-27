@@ -129,13 +129,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mainCell1" id="821-lh-EPV" customClass="CustomCollectionViewCell" customModule="Sports_App" customModuleProvider="target">
+                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mainCell1" id="821-lh-EPV" customClass="CustomCollectionViewCell" customModule="Sports_App" customModuleProvider="target">
                                         <rect key="frame" x="11" y="0.0" width="368" height="135"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MhN-Jb-bji">
                                             <rect key="frame" x="0.0" y="0.0" width="368" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="tintColor" systemColor="tintColor"/>
                                         </collectionViewCellContentView>
+                                        <color key="tintColor" systemColor="tintColor"/>
                                         <size key="customSize" width="368" height="135"/>
                                     </collectionViewCell>
                                 </cells>
@@ -153,7 +155,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayx-AI-W2w">
-                                <rect key="frame" x="156" y="52" width="78.333333333333314" height="30"/>
+                                <rect key="frame" x="156" y="47" width="78.333333333333314" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="0.024229738630000001" green="0.058464285140000002" blue="0.65161456480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -162,16 +164,15 @@
                         <viewLayoutGuide key="safeArea" id="v9N-NS-aBW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uOW-gT-g0V" firstAttribute="top" secondItem="Ayx-AI-W2w" secondAttribute="bottom" constant="20" id="3rt-f6-bfx"/>
+                            <constraint firstItem="Ayx-AI-W2w" firstAttribute="centerX" secondItem="cko-Lm-ce9" secondAttribute="centerX" id="2JZ-Lj-Cq3"/>
                             <constraint firstItem="v9N-NS-aBW" firstAttribute="bottom" secondItem="uOW-gT-g0V" secondAttribute="bottom" id="4Yg-dG-sDR"/>
+                            <constraint firstItem="uOW-gT-g0V" firstAttribute="top" secondItem="Ayx-AI-W2w" secondAttribute="bottom" constant="23" id="5GL-ru-RQ8"/>
                             <constraint firstItem="uOW-gT-g0V" firstAttribute="leading" secondItem="v9N-NS-aBW" secondAttribute="leading" id="5cD-mF-8mK"/>
                             <constraint firstItem="v9N-NS-aBW" firstAttribute="trailing" secondItem="fTu-bB-AjY" secondAttribute="trailing" constant="15" id="CUT-iT-XSI"/>
                             <constraint firstItem="v9N-NS-aBW" firstAttribute="trailing" secondItem="uOW-gT-g0V" secondAttribute="trailing" id="HEc-lf-E0y"/>
-                            <constraint firstItem="Ayx-AI-W2w" firstAttribute="centerX" secondItem="cko-Lm-ce9" secondAttribute="centerX" id="Ngc-hu-Cg6"/>
                             <constraint firstItem="fTu-bB-AjY" firstAttribute="top" secondItem="v9N-NS-aBW" secondAttribute="top" id="Uay-yp-N0r"/>
-                            <constraint firstItem="Ayx-AI-W2w" firstAttribute="centerX" secondItem="v9N-NS-aBW" secondAttribute="centerX" id="Uke-Kk-Hsg"/>
-                            <constraint firstItem="Ayx-AI-W2w" firstAttribute="top" secondItem="v9N-NS-aBW" secondAttribute="top" constant="5" id="nVF-AF-I2v"/>
                             <constraint firstItem="uOW-gT-g0V" firstAttribute="top" secondItem="fTu-bB-AjY" secondAttribute="bottom" constant="20" id="uVi-99-2Nj"/>
+                            <constraint firstItem="Ayx-AI-W2w" firstAttribute="top" secondItem="v9N-NS-aBW" secondAttribute="top" id="zef-hA-LK8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sports" image="sportscourt" catalog="system" id="z3f-Qn-kpz"/>
@@ -231,6 +232,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
