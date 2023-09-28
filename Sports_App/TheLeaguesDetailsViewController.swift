@@ -19,7 +19,7 @@ class TheLeaguesDetailsViewController: UIViewController {
        
         
         
-        collectionView.register(CollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
 
 
     
@@ -54,7 +54,7 @@ class TheLeaguesDetailsViewController: UIViewController {
           , bottom: 10, trailing: 15)
        
         section.orthogonalScrollingBehavior = .continuous
-            
+        section.boundarySupplementaryItems = [self.supplementtryHeader()]
            return section
     }
     func upcomingEventsSection()-> NSCollectionLayoutSection {
@@ -73,7 +73,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         , bottom: 10, trailing: 15)
      
           section.orthogonalScrollingBehavior = .paging
-          
+        section.boundarySupplementaryItems = [self.supplementtryHeader()]
          return section
     }
   
@@ -95,7 +95,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
             , bottom: 10, trailing: 0)
-        
+        section.boundarySupplementaryItems = [self.supplementtryHeader()]
            
             
             return section
@@ -115,10 +115,10 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell : UICollectionViewCell?
         if(indexPath.section==0){
-             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCollectionCell" , for: indexPath) as! EventsCollectionCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCollectionCell" , for: indexPath) as! EventsCollectionCell
         }
         else if (indexPath.section==1){
-             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
         }
         else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell" , for: indexPath) as! TeamCollectionViewCell
@@ -127,46 +127,49 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         
         return cell!
     }
+    //Header Functions
+    func supplementtryHeader()->NSCollectionLayoutBoundarySupplementaryItem{
+        
+        .init(layoutSize: .init(widthDimension:.fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top )
+        
+    }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! CollectionReusableView
-        
-        // Set the title for each section
-        headerView.titleLabel.text = "Section \(indexPath.section)"
-        
-        return headerView
+        if kind == UICollectionView.elementKindSectionHeader{
+            switch indexPath.section {
+            case 0 :
+                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+                
+                
+                sectionHeader.HeaderTitle?.text = "Incoming Events"
+                
+                return sectionHeader
+            case 1 :
+                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+                
+                
+                sectionHeader.HeaderTitle?.text = "Latest Events"
+                
+                return sectionHeader
+                
+            case 2 :
+                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+                
+                
+                sectionHeader.HeaderTitle?.text = "Teams "
+                
+                return sectionHeader
+                
+            default :
+                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+                
+                
+                sectionHeader.HeaderTitle?.text = "Sports"
+                
+                return sectionHeader
+            }
+            
+        }
+        return UICollectionViewCell()
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 50) // Set the desired height
-    }
-
-  
-}
-
-class CollectionReusableView: UICollectionReusableView {
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        // Set label properties, such as font, color, etc.
-        return label
-    }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // Add the titleLabel to the header view
-        addSubview(titleLabel)
-        
-        // Set constraints for the titleLabel
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
-

@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qD-Ft-XMV">
                         <rect key="frame" x="0.0" y="0.0" width="324" height="172"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football" translatesAutoresizingMaskIntoConstraints="NO" id="bhE-ne-ZaL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="championLeagues" translatesAutoresizingMaskIntoConstraints="NO" id="bhE-ne-ZaL">
                                 <rect key="frame" x="0.0" y="0.0" width="324" height="172"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20/1/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEi-Qq-E6M">
@@ -36,32 +36,50 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Barcelona" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVl-E2-scH">
-                                <rect key="frame" x="240" y="143.5" width="76" height="20.5"/>
+                                <rect key="frame" x="233" y="136.5" width="76" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kql-GB-XmU">
-                                <rect key="frame" x="8" y="143.5" width="91" height="20.5"/>
+                                <rect key="frame" x="15" y="136.5" width="91" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barca" translatesAutoresizingMaskIntoConstraints="NO" id="bpc-qr-qA0">
+                                <rect key="frame" x="235" y="32" width="74" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="BUH-pj-QpO"/>
+                                    <constraint firstAttribute="width" constant="74" id="Nxm-L5-jwt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="real" translatesAutoresizingMaskIntoConstraints="NO" id="dNr-2w-nLO">
+                                <rect key="frame" x="15" y="32" width="77" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="E4l-be-pMT"/>
+                                    <constraint firstAttribute="height" constant="93" id="ZJe-RF-CaC"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kql-GB-XmU" firstAttribute="leading" secondItem="3qD-Ft-XMV" secondAttribute="leading" constant="8" id="1WK-0L-bhd"/>
+                            <constraint firstItem="SVl-E2-scH" firstAttribute="top" secondItem="bpc-qr-qA0" secondAttribute="bottom" constant="11.5" id="11l-mf-ogB"/>
+                            <constraint firstAttribute="trailing" secondItem="bpc-qr-qA0" secondAttribute="trailing" constant="15" id="5A8-sV-GcB"/>
                             <constraint firstItem="JEi-Qq-E6M" firstAttribute="centerX" secondItem="3qD-Ft-XMV" secondAttribute="centerX" id="5jD-4v-Gnv"/>
                             <constraint firstAttribute="trailing" secondItem="bhE-ne-ZaL" secondAttribute="trailing" id="6lp-8V-VLP"/>
                             <constraint firstItem="bhE-ne-ZaL" firstAttribute="leading" secondItem="3qD-Ft-XMV" secondAttribute="leading" id="8Ek-Cp-VaW"/>
+                            <constraint firstItem="dNr-2w-nLO" firstAttribute="leading" secondItem="3qD-Ft-XMV" secondAttribute="leading" constant="15" id="9iR-iy-Cry"/>
                             <constraint firstItem="JEi-Qq-E6M" firstAttribute="top" secondItem="3qD-Ft-XMV" secondAttribute="top" constant="24" id="Aqj-41-FTq"/>
-                            <constraint firstAttribute="bottom" secondItem="kql-GB-XmU" secondAttribute="bottom" constant="8" id="RAU-lk-x0Y"/>
-                            <constraint firstAttribute="bottom" secondItem="SVl-E2-scH" secondAttribute="bottom" constant="8" id="TnL-GC-sPN"/>
+                            <constraint firstAttribute="bottom" secondItem="kql-GB-XmU" secondAttribute="bottom" constant="15" id="NsO-tp-hCt"/>
                             <constraint firstItem="bhE-ne-ZaL" firstAttribute="top" secondItem="3qD-Ft-XMV" secondAttribute="top" id="U7M-Sp-1iG"/>
                             <constraint firstItem="4eK-Q7-tON" firstAttribute="centerX" secondItem="3qD-Ft-XMV" secondAttribute="centerX" id="aNm-4k-UWw"/>
-                            <constraint firstAttribute="trailing" secondItem="SVl-E2-scH" secondAttribute="trailing" constant="8" id="dPc-h3-q8z"/>
                             <constraint firstItem="4eK-Q7-tON" firstAttribute="top" secondItem="3qD-Ft-XMV" secondAttribute="top" constant="7" id="euD-7g-tbj"/>
+                            <constraint firstItem="kql-GB-XmU" firstAttribute="top" secondItem="dNr-2w-nLO" secondAttribute="bottom" constant="11.5" id="g2u-up-YSM"/>
+                            <constraint firstAttribute="bottom" secondItem="SVl-E2-scH" secondAttribute="bottom" constant="15" id="lPL-C6-MBA"/>
                             <constraint firstAttribute="bottom" secondItem="bhE-ne-ZaL" secondAttribute="bottom" id="qv4-cs-OBI"/>
+                            <constraint firstItem="kql-GB-XmU" firstAttribute="leading" secondItem="3qD-Ft-XMV" secondAttribute="leading" constant="15" id="sdC-Ut-qXC"/>
+                            <constraint firstAttribute="trailing" secondItem="SVl-E2-scH" secondAttribute="trailing" constant="15" id="wnh-eI-J6H"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -77,7 +95,9 @@
             <connections>
                 <outlet property="dateLabel" destination="JEi-Qq-E6M" id="20h-AA-jp0"/>
                 <outlet property="eventImage" destination="bhE-ne-ZaL" id="Yhe-98-w6v"/>
+                <outlet property="team1Img" destination="dNr-2w-nLO" id="FVw-LY-wn1"/>
                 <outlet property="team1Label" destination="kql-GB-XmU" id="0Z0-VA-fxO"/>
+                <outlet property="team2Img" destination="bpc-qr-qA0" id="DP2-AT-x9W"/>
                 <outlet property="team2Label" destination="SVl-E2-scH" id="YYT-IU-OHi"/>
                 <outlet property="timeLabel" destination="4eK-Q7-tON" id="CLz-9t-2Ug"/>
             </connections>
@@ -85,7 +105,9 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="football" width="960" height="640"/>
+        <image name="barca" width="360" height="365"/>
+        <image name="championLeagues" width="1920" height="1080"/>
+        <image name="real" width="900" height="900"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

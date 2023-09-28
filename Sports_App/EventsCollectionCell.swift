@@ -9,6 +9,8 @@ import UIKit
 
 class EventsCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var team2Img: UIImageView!
+    @IBOutlet weak var team1Img: UIImageView!
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var team2Label: UILabel!
     @IBOutlet weak var team1Label: UILabel!
