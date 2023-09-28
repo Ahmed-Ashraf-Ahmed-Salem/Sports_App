@@ -61,12 +61,12 @@ class TheLeaguesDetailsViewController: UIViewController {
       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
       , heightDimension: .fractionalHeight(1))
       let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90)
         , heightDimension: .absolute(180))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
         , subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-        , bottom: 8, trailing: 0)
+        , bottom: 8, trailing: 15)
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
