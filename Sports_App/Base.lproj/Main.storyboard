@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="45c-GI-E4C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gDG-fc-pm1">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +14,7 @@
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LeagueVC" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeagueVC" id="BYZ-38-t0r" customClass="LeagueVC" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,7 +133,7 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wqb-li-8Ab">
-                                        <rect key="frame" x="38" y="311" width="317" height="276"/>
+                                        <rect key="frame" x="38" y="311" width="317" height="207.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Kit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvR-Si-luq">
                                                 <rect key="frame" x="8" y="20" width="135" height="32"/>
@@ -149,7 +150,7 @@
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xr8-WI-mV9">
-                                        <rect key="frame" x="86.333333333333329" y="617" width="220.33333333333337" height="40.666666666666629"/>
+                                        <rect key="frame" x="86.333333333333314" y="548.66666666666663" width="220.33333333333337" height="109"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
@@ -324,10 +325,45 @@
             </objects>
             <point key="canvasLocation" x="1272.5190839694656" y="855.63380281690149"/>
         </scene>
+        <!--Launch View Controller-->
+        <scene sceneID="6BQ-59-Gyp">
+            <objects>
+                <viewController id="gDG-fc-pm1" customClass="LaunchViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleAspectFit" id="PCE-L7-XnI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eqd-Tj-SoF" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="56" y="285" width="281" height="307"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="281" id="eRT-jw-2Ie"/>
+                                    <constraint firstAttribute="height" constant="307" id="kIV-of-OEL"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Sports_Animation"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bZn-Hs-41S"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Eqd-Tj-SoF" firstAttribute="centerX" secondItem="bZn-Hs-41S" secondAttribute="centerX" id="fVN-G2-uBH"/>
+                            <constraint firstItem="Eqd-Tj-SoF" firstAttribute="centerY" secondItem="bZn-Hs-41S" secondAttribute="centerY" id="lnK-nC-n5c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="onboardingLottieView" destination="Eqd-Tj-SoF" id="40f-PO-wlc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z93-bN-ub4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-758.01526717557249" y="-158.45070422535213"/>
+        </scene>
         <!--Sports-->
         <scene sceneID="pXs-Bv-de3">
             <objects>
-                <viewController id="xOg-4z-omM" customClass="SportsHomeScreen" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SportsHomeScreen" id="xOg-4z-omM" customClass="SportsHomeScreen" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cko-Lm-ce9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -356,7 +392,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTu-bB-AjY">
-                                <rect key="frame" x="323.66666666666669" y="59" width="54.333333333333314" height="34"/>
+                                <rect key="frame" x="323.66666666666674" y="59" width="54.333333333333258" height="34"/>
                                 <color key="tintColor" red="0.024229738630000001" green="0.058464285140000002" blue="0.65161456480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
@@ -368,7 +404,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayx-AI-W2w">
-                                <rect key="frame" x="157.66666666666666" y="59" width="78" height="31"/>
+                                <rect key="frame" x="157.66666666666663" y="59" width="78.000000000000028" height="31"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="0.024229738630000001" green="0.058464285140000002" blue="0.65161456480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
