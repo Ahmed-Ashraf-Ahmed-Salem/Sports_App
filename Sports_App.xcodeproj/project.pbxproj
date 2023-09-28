@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B048BDD2AC56C61008A78E5 /* FavouritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B048BDC2AC56C61008A78E5 /* FavouritesScreen.swift */; };
 		5B6D41902AC3F4430045E4FF /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D418E2AC3F4430045E4FF /* CustomCollectionViewCell.swift */; };
 		5B6D41912AC3F4430045E4FF /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D418F2AC3F4430045E4FF /* CustomCollectionViewCell.xib */; };
 		5B6D41932AC3F6800045E4FF /* SportsHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D41922AC3F6800045E4FF /* SportsHomeScreen.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B048BDC2AC56C61008A78E5 /* FavouritesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesScreen.swift; sourceTree = "<group>"; };
 		5B6D418E2AC3F4430045E4FF /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B6D418F2AC3F4430045E4FF /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		5B6D41922AC3F6800045E4FF /* SportsHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsHomeScreen.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				EEC2EE112AC552BB00D4154B /* TeamCollectionViewCell.swift */,
 				EEC2EE122AC552BB00D4154B /* TeamCollectionViewCell.xib */,
 				EEC2EE102AC552BB00D4154B /* TeamDetailsViewController.swift */,
+				5B048BDC2AC56C61008A78E5 /* FavouritesScreen.swift */,
 			);
 			path = Sports_App;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				EEDE01662AC45076003919C5 /* EventsCollectionCell.swift in Sources */,
 				5B9AD4772AC3E65400F2487A /* AppDelegate.swift in Sources */,
 				DC8FC09B2AC4D91D00CFCFBA /* LeagueVC.swift in Sources */,
+				5B048BDD2AC56C61008A78E5 /* FavouritesScreen.swift in Sources */,
 				5BA7C83E2AC47F19005E8F2B /* SportTypes.swift in Sources */,
 				EEDE01682AC45076003919C5 /* TheLeaguesDetailsViewController.swift in Sources */,
 				EEDE016B2AC457BF003919C5 /* LatestEventsCollectionViewCell.swift in Sources */,

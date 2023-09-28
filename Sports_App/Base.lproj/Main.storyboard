@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="45c-GI-E4C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CX3-DS-VOF">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -237,13 +237,13 @@
         <!--Favourites-->
         <scene sceneID="wB7-hj-xxj">
             <objects>
-                <viewController id="Vug-mm-IvV" sceneMemberID="viewController">
+                <viewController id="Vug-mm-IvV" customClass="FavouritesScreen" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kC1-9G-ifl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xT5-UB-IdI">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="119" width="393" height="650"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="73" id="bDX-JF-A8n">
@@ -256,22 +256,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sx-5H-I32">
+                                <rect key="frame" x="25" y="69" width="343" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" red="0.024229738630000001" green="0.058464285140000002" blue="0.65161456480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FyQ-ZD-PVA"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="FyQ-ZD-PVA" firstAttribute="bottom" secondItem="xT5-UB-IdI" secondAttribute="bottom" id="3fy-Ee-fWX"/>
                             <constraint firstItem="xT5-UB-IdI" firstAttribute="leading" secondItem="FyQ-ZD-PVA" secondAttribute="leading" id="4ln-3t-U8B"/>
-                            <constraint firstItem="xT5-UB-IdI" firstAttribute="top" secondItem="FyQ-ZD-PVA" secondAttribute="top" id="QpR-OX-NB3"/>
                             <constraint firstItem="FyQ-ZD-PVA" firstAttribute="trailing" secondItem="xT5-UB-IdI" secondAttribute="trailing" id="RDI-G8-cwE"/>
+                            <constraint firstItem="9Sx-5H-I32" firstAttribute="top" secondItem="FyQ-ZD-PVA" secondAttribute="top" constant="10" id="SNy-V9-bdb"/>
+                            <constraint firstItem="FyQ-ZD-PVA" firstAttribute="trailing" secondItem="9Sx-5H-I32" secondAttribute="trailing" constant="25" id="WDm-Zs-wom"/>
+                            <constraint firstItem="9Sx-5H-I32" firstAttribute="leading" secondItem="FyQ-ZD-PVA" secondAttribute="leading" constant="25" id="oRk-5v-rg7"/>
+                            <constraint firstItem="xT5-UB-IdI" firstAttribute="top" secondItem="9Sx-5H-I32" secondAttribute="bottom" constant="20" id="opd-wy-sJh"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourites" image="heart" catalog="system" id="3bn-xc-Vud"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="xT5-UB-IdI" id="amk-ZB-92G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6W-rd-c8i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273.8461538461538" y="855.92417061611366"/>
+            <point key="canvasLocation" x="1272.5190839694656" y="855.63380281690149"/>
         </scene>
         <!--Sports-->
         <scene sceneID="pXs-Bv-de3">
