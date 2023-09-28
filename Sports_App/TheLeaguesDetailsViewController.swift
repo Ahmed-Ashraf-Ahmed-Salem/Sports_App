@@ -19,7 +19,7 @@ class TheLeaguesDetailsViewController: UIViewController {
        
         
         
-        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        //collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
 
 
     
@@ -135,16 +135,17 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader{
+            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
             switch indexPath.section {
             case 0 :
-                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+              
                 
                 
                 sectionHeader.HeaderTitle?.text = "Incoming Events"
                 
                 return sectionHeader
             case 1 :
-                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+               // let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
                 
                 
                 sectionHeader.HeaderTitle?.text = "Latest Events"
@@ -152,7 +153,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
                 return sectionHeader
                 
             case 2 :
-                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+              //  let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
                 
                 
                 sectionHeader.HeaderTitle?.text = "Teams "
@@ -160,7 +161,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
                 return sectionHeader
                 
             default :
-                let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+               // let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
                 
                 
                 sectionHeader.HeaderTitle?.text = "Sports"

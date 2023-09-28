@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c7d-1Z-iP1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="45c-GI-E4C">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -76,7 +76,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSr-lw-ZnW">
                                             <rect key="frame" x="25" y="5" width="343" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -87,7 +87,7 @@
                                         <constraint firstAttribute="trailing" secondItem="PSr-lw-ZnW" secondAttribute="trailing" constant="25" id="rkO-8c-4Ee"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="HeaderTitle" destination="PSr-lw-ZnW" id="4am-GE-k5x"/>
+                                        <outlet property="HeaderTitle" destination="PSr-lw-ZnW" id="zou-NX-XIx"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
@@ -210,7 +210,7 @@
                                     <constraint firstAttribute="height" constant="50" id="gb7-22-Ezx"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.fill" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="y"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUm-5X-QvT">
                                 <rect key="frame" x="203" y="734" width="50" height="50"/>
@@ -444,10 +444,10 @@
         <image name="real" width="900" height="900"/>
         <image name="rectangle.grid.2x2" catalog="system" width="128" height="97"/>
         <image name="sportscourt" catalog="system" width="128" height="83"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="stadium" width="1000" height="666"/>
         <image name="t" width="48" height="48"/>
         <image name="tshirt" width="920" height="600"/>
+        <image name="y" width="48" height="48"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
