@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TheLeaguesDetailsViewController: UIViewController {
 
@@ -37,7 +38,21 @@ class TheLeaguesDetailsViewController: UIViewController {
                         self.collectionView.register(UINib(nibName: "TeamCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TeamCollectionViewCell")
                         return self.teamsSection()                   }
                 }
-        collectionView.setCollectionViewLayout(layout, animated: true)    }
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        
+    }
+    
+    
+    
+    @IBAction func favoriteBtn(_ sender: Any) {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+     //   let favorite = FavoriteLeagues(context:context)
+        
+        
+    }
+    
     func teamsSection()-> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
         , heightDimension: .fractionalHeight(1))

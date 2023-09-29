@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gDG-fc-pm1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gDG-fc-pm1">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -105,6 +104,9 @@
                     <navigationItem key="navigationItem" title="English League Championship" id="6vg-h4-9x8">
                         <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="DbA-Qf-Cs3">
                             <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="favoriteBtn:" destination="QRZ-zw-h4X" id="caL-CU-1pf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -472,6 +474,9 @@
             <point key="canvasLocation" x="-555.38461538461536" y="1144.5497630331754"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Eqd-Tj-SoF"/>
+    </designables>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="f" width="48" height="48"/>
