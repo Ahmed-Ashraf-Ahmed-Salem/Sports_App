@@ -25,7 +25,7 @@ class LaunchViewController: UIViewController {
     
     @objc func showFirstView(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SportsHomeScreen") as! SportsHomeScreen
+        let vc = storyboard.instantiateViewController(withIdentifier: "TabBC") as! TabBC
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true)
