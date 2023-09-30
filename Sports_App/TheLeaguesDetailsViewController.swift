@@ -46,9 +46,8 @@ class TheLeaguesDetailsViewController: UIViewController {
     
     @IBAction func favoriteBtn(_ sender: Any) {
         
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-     //   let favorite = FavoriteLeagues(context:context)
         
         
     }
