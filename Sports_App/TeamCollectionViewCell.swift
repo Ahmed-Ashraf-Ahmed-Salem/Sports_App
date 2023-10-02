@@ -19,5 +19,9 @@ class TeamCollectionViewCell: UICollectionViewCell {
 
         greyView.layer.cornerRadius = 25
     }
-
+    func setupCell(team : Team){
+        teamName.text = team.team_name
+        let teamImageURL = URL(string: team.team_logo ?? "")
+        teamLogo.kf.setImage(with: teamImageURL)
+    }
 }

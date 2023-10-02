@@ -9,8 +9,9 @@ import UIKit
 import CoreData
 
 class TheLeaguesDetailsViewController: UIViewController {
-    var leagueID : Int = 0
+    var  leagueID : Int = 0
     var  chosen_sport : String = ""
+    var  leagueTeams : [Team] = []
     var upcomingEvents: [Event]?
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -20,7 +21,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.delegate = self
        
         self.getLeaguesEvents()
-        
+        self.getLeagueTeams()
         //collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
 
 
@@ -42,7 +43,14 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
         
     }
-    
+    func getLeagueTeams (){
+        NetworkManager.getTeams(LeagueId: leagueID, chosen_sport: chosen_sport) { teamslist, error in
+            if let allTeams = teamslist {
+                self.leagueTeams = allTeams
+                self.collectionView.reloadData()
+            }
+        }
+    }
     func getLeaguesEvents(){
         NetworkManager.getEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
             if let events = events{
@@ -142,7 +150,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
             return upcomingEvents?.count ?? 0
         }
         else {
-            return 3
+            return leagueTeams.count
         }
         
     }
@@ -171,6 +179,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell" , for: indexPath) as! TeamCollectionViewCell
+            cell.setupCell(team: leagueTeams[indexPath.row])
             return cell
         }
         

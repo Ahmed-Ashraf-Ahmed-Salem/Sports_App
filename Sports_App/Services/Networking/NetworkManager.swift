@@ -67,4 +67,25 @@ class NetworkManager: Network{
             }
         }
     }
+    static func getTeams(LeagueId : Int ,chosen_sport : String  , completionHandler : @escaping([Team]?,Error?)-> Void){
+        let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)?met=Teams&leagueId=\(LeagueId)&APIkey=f0b6949f038454e6ea83893c1a14440a4d4dc977428cb739465fd63304157032"
+        AF.request(urlFile,method: .post,
+                   parameters: nil,
+                   encoding: URLEncoding.default, headers: nil).response{
+            (response:DataResponse)  in
+            switch(response.result) {
+            case .success(let value):
+                do{
+                    let LeagueTeams = try JSONDecoder().decode(Teams.self, from: value ?? Data())
+                    completionHandler(LeagueTeams.result,nil)
+                } catch (let error){
+                    print(error)
+                    completionHandler(nil, error)
+                }
+            case .failure(let error):
+                print(error)
+                completionHandler(nil, error)
+            }
+        }
+    }
 }
