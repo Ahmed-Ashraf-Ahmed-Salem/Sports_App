@@ -24,5 +24,10 @@ class LeagueCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func setUpCell(league: League){
+        leagueName.text = league.league_name
+        let leagueImageURL = URL(string: league.league_logo ?? "")
+        leagueImage.kf.setImage(with: leagueImageURL)
+    }
     
 }

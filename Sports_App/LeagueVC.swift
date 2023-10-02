@@ -28,13 +28,14 @@ extension LeagueVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = LeagueTableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueCell
-        cell.leagueName.text = allLeagues[indexPath.row].league_name
+        cell.setUpCell(league: allLeagues[indexPath.row])
         
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "leagueEvents") as! TheLeaguesDetailsViewController
         vc.leagueID = allLeagues[indexPath.row].league_key ?? 207
+        vc.chosen_sport = self.chosen_Sports
         print(allLeagues[indexPath.row].league_key ?? 0 )
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -48,4 +49,3 @@ extension LeagueVC : UITableViewDelegate , UITableViewDataSource {
         }
     }
 }
-

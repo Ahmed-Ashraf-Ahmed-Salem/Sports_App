@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-//import Foundation
 struct Leagues : Codable {
     var success: Int?
     var result: [League]?

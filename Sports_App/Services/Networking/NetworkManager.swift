@@ -24,8 +24,8 @@ class NetworkManager: Network{
         }
     }
     */
-    static func getEvents(leagueId: Int, completion:(([Event]?, Error?) -> Void)?) {
-        let urlFile = "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=\(leagueId)&from=2023-01-18&to=2023-10-20&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
+    static func getEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
+        let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=2023-01-18&to=2023-10-20&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
             
             AF.request(urlFile,
                        method: .post,
