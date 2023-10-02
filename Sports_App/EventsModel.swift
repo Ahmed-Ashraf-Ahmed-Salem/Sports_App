@@ -21,4 +21,5 @@ struct Event: Codable{
     let home_team_logo: String?
     let away_team_logo:String?
     let league_logo: String?
+    let event_final_result: String?
 }

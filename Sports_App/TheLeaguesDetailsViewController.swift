@@ -20,7 +20,6 @@ class TheLeaguesDetailsViewController: UIViewController {
        
         self.getLeaguesEvents()
         
-        
         //collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
 
 
@@ -135,8 +134,16 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         return 3
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(upcomingEvents?.count ?? 0)
-        return upcomingEvents?.count ?? 0
+        if(section == 0){
+            return upcomingEvents?.count ?? 0
+        }
+        else if (section == 1){
+            return upcomingEvents?.count ?? 0
+        }
+        else {
+            return 3
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -148,6 +155,17 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         }
         else if (indexPath.section==1){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
+     /*       var arrFiltered = upcomingEvents
+            var i: Int = 1
+            while(upcomingEvents?.count ?? 0 >= i){
+                if(upcomingEvents?[indexPath.row].event_home_team == "" && upcomingEvents?[indexPath.row].event_away_team == ""){
+                    upcomingEvents?.remove(at: indexPath.row)
+                }
+                i = i + 1
+            }
+            arrFiltered = upcomingEvents
+      */
+            cell.setup(event: upcomingEvents?[indexPath.row])
             return cell
         }
         else {
