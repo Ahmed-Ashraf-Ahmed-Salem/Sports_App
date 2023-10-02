@@ -9,4 +9,5 @@ import Foundation
 
 protocol Network{
     static func getEvents(leagueId: Int, completion:(([Event]?, Error?) -> Void)?)
+    static func getLeagues(chosen_sport : String , completionHandler : @escaping([League]?,Error?)-> Void)
 }

@@ -58,9 +58,12 @@ class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let stoaryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = stoaryBoard.instantiateViewController(withIdentifier: "leagueEvents") as! TheLeaguesDetailsViewController
+        let vc = stoaryBoard.instantiateViewController(withIdentifier: "LeagueVC") as! LeagueVC
    //     self.navigationController?.pushViewController(vc, animated: true)
-        self.present(vc, animated: true)
+        let sport = sports[indexPath.row]
+
+        vc.chosen_Sports = sport.title?.lowercased() ?? "football"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func toggleHomeScreen(_ sender: Any) {

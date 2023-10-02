@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class TheLeaguesDetailsViewController: UIViewController {
-
+    var leagueID : Int = 0
     var upcomingEvents: [Event]?
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class TheLeaguesDetailsViewController: UIViewController {
     }
     
     func getLeaguesEvents(){
-        NetworkManager.getEvents(leagueId: 207) { events, error in
+        NetworkManager.getEvents(leagueId: leagueID) { events, error in
             if let events = events{
            //     print(events)
            //     self.upcomingEvents?.append(contentsOf: events)
