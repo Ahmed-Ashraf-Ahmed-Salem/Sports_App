@@ -121,7 +121,7 @@
         <!--Team Details View Controller-->
         <scene sceneID="MyQ-wi-pGw">
             <objects>
-                <viewController id="c7d-1Z-iP1" customClass="TeamDetailsViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamsVC" id="c7d-1Z-iP1" customClass="TeamDetailsViewController" customModule="Sports_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yVc-kf-zit">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

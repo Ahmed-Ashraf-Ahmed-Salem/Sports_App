@@ -9,7 +9,8 @@ import UIKit
 
 class TeamDetailsViewController: UIViewController {
 
-
+    var teamNameSTR : String = ""
+    var TeamLogoURLSTR : String = ""
     @IBOutlet weak var youtubeBtn: UIButton!
     
 
@@ -31,7 +32,9 @@ class TeamDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        teamName.text = teamNameSTR
+        let TeamlogoURL = URL(string: TeamLogoURLSTR)
+        teamLogo.kf.setImage(with: TeamlogoURL)
         greyView.layer.cornerRadius = 15
         officialWebsiteBtn.layer.cornerRadius = 10
         fbBtn.layer.cornerRadius = 0.5 * fbBtn.bounds.size.width

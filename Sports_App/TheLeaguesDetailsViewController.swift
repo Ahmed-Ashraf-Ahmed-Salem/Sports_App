@@ -186,6 +186,15 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         
   //      return cell!
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (indexPath.section == 2) {
+            let vc = storyboard?.instantiateViewController(identifier: "TeamsVC") as! TeamDetailsViewController
+            vc.teamNameSTR = leagueTeams[indexPath.row].team_name ?? "NO Name"
+            vc.TeamLogoURLSTR = leagueTeams[indexPath.row].team_logo ?? "real"
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
     //Header Functions
     func supplementtryHeader()->NSCollectionLayoutBoundarySupplementaryItem{
         
