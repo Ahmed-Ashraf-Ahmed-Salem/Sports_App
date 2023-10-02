@@ -10,6 +10,7 @@ import CoreData
 
 class TheLeaguesDetailsViewController: UIViewController {
 
+    var upcomingEvents: [Event]?
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
        
-       
+        self.getLeaguesEvents()
         
         
         //collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
@@ -40,6 +41,17 @@ class TheLeaguesDetailsViewController: UIViewController {
                 }
         collectionView.setCollectionViewLayout(layout, animated: true)
         
+    }
+    
+    func getLeaguesEvents(){
+        NetworkManager.getEvents(leagueId: 207) { events, error in
+            if let events = events{
+           //     print(events)
+           //     self.upcomingEvents?.append(contentsOf: events)
+                self.upcomingEvents = events
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     
@@ -123,23 +135,28 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         return 3
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        print(upcomingEvents?.count ?? 0)
+        return upcomingEvents?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell : UICollectionViewCell?
+    //    var cell : UICollectionViewCell?
         if(indexPath.section==0){
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCollectionCell" , for: indexPath) as! EventsCollectionCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCollectionCell" , for: indexPath) as! EventsCollectionCell
+            cell.setup(event: upcomingEvents?[indexPath.row])
+            return cell
         }
         else if (indexPath.section==1){
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
+            return cell
         }
         else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell" , for: indexPath) as! TeamCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell" , for: indexPath) as! TeamCollectionViewCell
+            return cell
         }
         
         
-        return cell!
+  //      return cell!
     }
     //Header Functions
     func supplementtryHeader()->NSCollectionLayoutBoundarySupplementaryItem{

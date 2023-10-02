@@ -7,6 +7,8 @@ target 'Sports_App' do
 
   # Pods for Sports_App
 	pod 'lottie-ios'
+	pod 'Alamofire'
+	pod 'Kingfisher'
   target 'Sports_AppTests' do
     inherit! :search_paths
     # Pods for testing

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class EventsCollectionCell: UICollectionViewCell {
 
@@ -22,4 +23,16 @@ class EventsCollectionCell: UICollectionViewCell {
         eventImage.layer.cornerRadius = 25
     }
 
+    func setup(event: Event?){
+        team1Label.text = event?.event_home_team
+        team2Label.text = event?.event_away_team
+        timeLabel.text = event?.event_time
+        dateLabel.text = event?.event_date
+        let homeTeamLogo = URL(string: event?.home_team_logo ?? "")
+        team1Img.kf.setImage(with: homeTeamLogo)
+        let awayTeamLogo = URL(string: event?.away_team_logo ?? "")
+        team2Img.kf.setImage(with: awayTeamLogo)
+        let leagueLogo = URL(string: event?.league_logo ?? "")
+        eventImage.kf.setImage(with: leagueLogo)
+    }
 }

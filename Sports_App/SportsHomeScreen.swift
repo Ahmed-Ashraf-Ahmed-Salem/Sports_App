@@ -55,11 +55,14 @@ class SportsHomeScreen: UIViewController, UICollectionViewDelegate, UICollection
         cell.collectionViewItemLabel.text = sport.title
         return cell
     }
-    /*
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        <#code#>
+        let stoaryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = stoaryBoard.instantiateViewController(withIdentifier: "leagueEvents") as! TheLeaguesDetailsViewController
+   //     self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true)
     }
-    */
+    
     @IBAction func toggleHomeScreen(_ sender: Any) {
         isToggle.toggle()
         updateCollectionViewLayout()
