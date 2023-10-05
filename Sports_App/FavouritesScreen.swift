@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import CoreData
+
 
 class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var favoriteArray = [FavoriteLeagues]()
     
     @IBOutlet weak var tableView: UITableView!
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    override func viewWillAppear(_ animated: Bool) {
+        loadFromCoreData()
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -21,13 +28,42 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return favoriteArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueCell
         
+        cell.leagueName.text = favoriteArray[indexPath.row].league_name
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        print("Deleted")
+          
+          context.delete(favoriteArray[indexPath.row])
+
+        self.favoriteArray.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+          do{
+              try context.save()
+          }
+          catch{
+              print(error.localizedDescription)
+          }
+      }
+    }
+    func loadFromCoreData(){
+        let request :NSFetchRequest<FavoriteLeagues> = FavoriteLeagues.fetchRequest()
+        do {
+            favoriteArray = try context.fetch(request)
+        }
+        catch{
+            print(error.localizedDescription)
+        }
+        
     }
     
 

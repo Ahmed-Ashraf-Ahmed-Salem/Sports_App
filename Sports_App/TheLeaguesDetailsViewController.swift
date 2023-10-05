@@ -9,13 +9,37 @@ import UIKit
 import CoreData
 
 class TheLeaguesDetailsViewController: UIViewController {
+    var fav : Bool = false
     var  leagueID : Int = 0
+    var l : League!
+    
     var  chosen_sport : String = ""
     var  leagueTeams : [Team] = []
     var upcomingEvents: [Event]?
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var favBtn: UIBarButtonItem!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    override func viewWillAppear(_ animated: Bool) {
+      
+        
+    loadFromCoreData()
+        for favorite in favoriteArray{
+            if(favorite.league_name == l.league_name){
+                fav = true
+                favBtn.tintColor = .red
+                favBtn.image = UIImage(systemName: "heart.fill")
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -25,6 +49,9 @@ class TheLeaguesDetailsViewController: UIViewController {
         //collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
 
 
+        
+          
+        
     
 
         let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
@@ -61,16 +88,100 @@ class TheLeaguesDetailsViewController: UIViewController {
             }
         }
     }
-    
-    
-    
-    @IBAction func favoriteBtn(_ sender: Any) {
-        
-        //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        
+    func loadFromCoreData(){
+        let request :NSFetchRequest<FavoriteLeagues> = FavoriteLeagues.fetchRequest()
+        do {
+            favoriteArray = try context.fetch(request)
+        }
+        catch{
+            print(error.localizedDescription)
+        }
         
     }
+    
+    var favoriteArray = [FavoriteLeagues]()
+    @IBAction func favoriteBtn(_ sender: Any) {
+        fav.toggle()
+       // var cdm : CoreDataManager!
+        
+        loadFromCoreData()
+        let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
+        let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
+        
+        // Set the properties for the new movie
+        favLeague.league_name = l.league_name
+        favLeague.league_key = Int32(l.league_key!)
+        print(favLeague.league_name)
+        
+        if fav == true {
+            favBtn.tintColor = .red
+            favBtn.image = UIImage(systemName: "heart.fill")
+           // favLeague.setValue( l.league_key, forKey: "league_key")
+           // favLeague.setValue(l.league_name, forKey: "league_name")
+            
+            favoriteArray.append(favLeague)
+            
+            do{
+                try context.save()
+            }
+            catch{
+                print(error.localizedDescription)
+            }
+        
+    
+    
+            
+            
+          
+           
+            
+       /*     for league in leagueVc.allLeagues{
+                if (league.league_key == leagueID){
+                    favLeague.league_key = Int32(league.league_key!)
+                    print(favLeague.league_key)
+                    favLeague.league_name = league.league_name
+                    cdm.favoriteArray.append(favLeague)
+                    cdm.addingToCoreData()
+                }
+            }*/
+            //var cdm = CoreDataManager()
+            //cdm.favoriteArray.append()
+        }
+        else{
+            favBtn.tintColor = .black
+            favBtn.image = UIImage(systemName: "heart")
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"FavoriteLeagues")
+            fetchRequest.predicate = NSPredicate(format: "league_name = %@", "\(l.league_name)")
+                    do
+                    {
+                        let fetchedResults =  try context.fetch(fetchRequest) as? [NSManagedObject]
+
+                        for entity in fetchedResults! {
+
+                            context.delete(entity)
+                       }
+                        do{
+                            try context.save()
+                        }
+                        catch{
+                            print(error.localizedDescription)
+                        }
+                    }
+                    catch _ {
+                        print("Could not delete")
+
+                    }
+        }
+          
+                
+            }
+        
+        
+        
+        
+        
+    
     
     func teamsSection()-> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
