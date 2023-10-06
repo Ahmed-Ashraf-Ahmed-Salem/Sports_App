@@ -25,8 +25,11 @@ class NetworkManager: Network{
     }
     */
     static func getEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
+        print(chosen_sport)
+        print(leagueId)
         let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=2023-01-18&to=2023-10-20&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
-            
+        //https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=152&from=2023-01-18&to=2023-10-20&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38
+            print(urlFile)
             AF.request(urlFile,
                        method: .post,
                        parameters: nil,
@@ -47,7 +50,8 @@ class NetworkManager: Network{
             }
         }
     static func getLeagues(chosen_sport : String , completionHandler : @escaping([League]?,Error?)-> Void){
-        
+       
+       
         AF.request("https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Leagues&APIkey=f0b6949f038454e6ea83893c1a14440a4d4dc977428cb739465fd63304157032",method: .post,
                    parameters: nil,
                    encoding: URLEncoding.default, headers: nil).response{
