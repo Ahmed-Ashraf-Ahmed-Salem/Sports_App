@@ -131,6 +131,7 @@ class TheLeaguesDetailsViewController: UIViewController {
             
             favLeague.league_name = l.league_name
             favLeague.league_key = Int32(l.league_key!)
+            favLeague.sport_type = chosen_sport
             print(favLeague.league_name)
             favoriteArray.append(favLeague)
             

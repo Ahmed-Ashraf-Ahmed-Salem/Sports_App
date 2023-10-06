@@ -47,10 +47,10 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         vc.leagueID = Int(favoriteArray[indexPath.row].league_key )
         
         print(Int(favoriteArray[indexPath.row].league_key ))
+        vc.chosen_sport = favoriteArray[indexPath.row].sport_type ?? "no type"
         print(vc.chosen_sport)
-       // vc.l = favoriteArray[indexPath.row]
-        //vc.chosen_sport = self.chosen_Sports
-        //self.present(vc, animated: true)
+    
+        self.present(vc, animated: true)
       
     }
     
