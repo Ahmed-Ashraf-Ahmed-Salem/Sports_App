@@ -10,18 +10,22 @@ import CoreData
 import UIKit
 
 protocol CoreDataProtocol{
-    func addingToCoreData()
-    func loadFromCoreData()
+    func addingToCoreData(league:League)
+    func loadFromCoreData()->[FavoriteLeagues]
     func deleteFromCoreData(key:Int)
 }
 class CoreDataManager : CoreDataProtocol{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var favoriteArray = [FavoriteLeagues]()
 
-    func addingToCoreData() {
-        let favorite = FavoriteLeagues(context:context)
+    func addingToCoreData(league:League) {
+        let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
+        let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
         //adding favorite attribute
-        favoriteArray.append(favorite)
+        
+        favLeague.setValue( league.league_key, forKey: "league_key")
+         favLeague.setValue(league.league_name, forKey: "league_name")
+        favoriteArray.append(favLeague)
         
         do{
             try context.save()
@@ -32,7 +36,7 @@ class CoreDataManager : CoreDataProtocol{
 
     }
     
-    func loadFromCoreData(){
+    func loadFromCoreData()->[FavoriteLeagues]{
         let request :NSFetchRequest<FavoriteLeagues> = FavoriteLeagues.fetchRequest()
         do {
             favoriteArray = try context.fetch(request)
@@ -40,7 +44,8 @@ class CoreDataManager : CoreDataProtocol{
         catch{
             print(error.localizedDescription)
         }
-        
+        return favoriteArray
+
     }
     func deleteFromCoreData(key:Int){
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"FavoriteLeagues")

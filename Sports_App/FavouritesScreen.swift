@@ -15,14 +15,18 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var tableView: UITableView!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     override func viewWillAppear(_ animated: Bool) {
+
         loadFromCoreData()
 
+        print("will")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        loadFromCoreData()
 
+        print("did")
         // Do any additional setup after loading the view.
         tableView.register(UINib(nibName: "LeagueCell", bundle: nil), forCellReuseIdentifier: "leagueCell")
     }
@@ -37,6 +41,14 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.leagueName.text = favoriteArray[indexPath.row].league_name
         
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: "leagueEvents") as! TheLeaguesDetailsViewController
+        vc.leagueID = Int(favoriteArray[indexPath.row].league_key )
+       // vc.l = favoriteArray[indexPath.row]
+        //vc.chosen_sport = self.chosen_Sports
+        print(favoriteArray[indexPath.row].league_key )
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

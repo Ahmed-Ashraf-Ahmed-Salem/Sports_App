@@ -37,7 +37,7 @@ class TheLeaguesDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadFromCoreData()
         
         
         
@@ -98,27 +98,22 @@ class TheLeaguesDetailsViewController: UIViewController {
         }
         
     }
-    
+     
     var favoriteArray = [FavoriteLeagues]()
     @IBAction func favoriteBtn(_ sender: Any) {
         fav.toggle()
-       // var cdm : CoreDataManager!
-        
         loadFromCoreData()
-        let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
-        let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
-        
-        // Set the properties for the new movie
-        favLeague.league_name = l.league_name
-        favLeague.league_key = Int32(l.league_key!)
-        print(favLeague.league_name)
-        
+
         if fav == true {
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
-           // favLeague.setValue( l.league_key, forKey: "league_key")
-           // favLeague.setValue(l.league_name, forKey: "league_name")
+         
+            let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
+            let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
             
+            favLeague.league_name = l.league_name
+            favLeague.league_key = Int32(l.league_key!)
+            print(favLeague.league_name)
             favoriteArray.append(favLeague)
             
             do{
@@ -127,53 +122,29 @@ class TheLeaguesDetailsViewController: UIViewController {
             catch{
                 print(error.localizedDescription)
             }
-        
-    
-    
-            
-            
-          
-           
-            
-       /*     for league in leagueVc.allLeagues{
-                if (league.league_key == leagueID){
-                    favLeague.league_key = Int32(league.league_key!)
-                    print(favLeague.league_key)
-                    favLeague.league_name = league.league_name
-                    cdm.favoriteArray.append(favLeague)
-                    cdm.addingToCoreData()
-                }
-            }*/
-            //var cdm = CoreDataManager()
-            //cdm.favoriteArray.append()
+
         }
         else{
             favBtn.tintColor = .black
             favBtn.image = UIImage(systemName: "heart")
             
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"FavoriteLeagues")
-            fetchRequest.predicate = NSPredicate(format: "league_name = %@", "\(l.league_name)")
-                    do
-                    {
-                        let fetchedResults =  try context.fetch(fetchRequest) as? [NSManagedObject]
+            for i in 0...favoriteArray.count-1{
+                if(favoriteArray[i].league_key == Int32(l.league_key!)){
+                    context.delete(favoriteArray[i])
 
-                        for entity in fetchedResults! {
-
-                            context.delete(entity)
-                       }
-                        do{
-                            try context.save()
-                        }
-                        catch{
-                            print(error.localizedDescription)
-                        }
+                  favoriteArray.remove(at:i)
+                 
+                    do{
+                        try context.save()
                     }
-                    catch _ {
-                        print("Could not delete")
-
+                    catch{
+                        print(error.localizedDescription)
                     }
+                }
+            }
         }
-          
+        loadFromCoreData()
+
                 
             }
         
