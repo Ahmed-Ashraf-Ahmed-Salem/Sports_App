@@ -17,7 +17,7 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewWillAppear(_ animated: Bool) {
 
         loadFromCoreData()
-
+       
         print("will")
     }
     override func viewDidLoad() {
@@ -75,7 +75,7 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         catch{
             print(error.localizedDescription)
         }
-        
+        self.tableView.reloadData()
     }
     
 

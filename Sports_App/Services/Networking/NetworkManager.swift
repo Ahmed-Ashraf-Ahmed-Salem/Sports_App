@@ -24,12 +24,65 @@ class NetworkManager: Network{
         }
     }
     */
+   private static func getDate() -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat =  "yyyy-MM-dd"
+       let result = formatter.string(from: date)
+               return result
+    }
+    private static func getNextWeekDate() -> String{
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let nextWeekDate = calendar.date(byAdding: .day, value: 7, to: currentDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let nextWeekDateString = dateFormatter.string(from: nextWeekDate!)
+        return nextWeekDateString
+    }
+    private static func getLasttWeekDate() -> String{
+        let currentDate = Date()
+        let calendar = Calendar.current
+     
+        let lastWeekDate  = calendar.date(byAdding: .day, value: -7, to: currentDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let lastWeekDateString = dateFormatter.string(from: lastWeekDate!)
+         return lastWeekDateString
+    }
+    
+
+    //let currentWeek = calendar.component(.weekOfYear, from: currentDate)
+    
+    static func getLatestEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
+        let currentdate =  getDate()
+        let lastWeekDate = getLasttWeekDate()
+        let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=\(lastWeekDate)&to=\(currentdate)&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
+        print(urlFile)
+        AF.request(urlFile,
+                   method: .post,
+                   parameters: nil,
+                   encoding: URLEncoding.default, headers: nil).response { (response:DataResponse)  in
+            switch(response.result) {
+            case .success(let value):
+                do{
+                    let readEvents = try JSONDecoder().decode(Events.self, from: value ?? Data())
+                    completion?(readEvents.result, nil)
+                } catch (let err){
+                    print(err)
+                    completion?(nil, err)
+                }
+            case .failure(let err):
+                print(err)
+                completion?(nil, err)
+            }
+        }
+      
+    }
     static func getEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
-        print(chosen_sport)
-        print(leagueId)
-        let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=2023-01-18&to=2023-10-20&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
-        //https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=152&from=2023-01-18&to=2023-10-20&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38
-            print(urlFile)
+        let currentdate =  getDate()
+        let nextWeekDate = getNextWeekDate()
+        let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=\(currentdate)&to=\(nextWeekDate)&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
             AF.request(urlFile,
                        method: .post,
                        parameters: nil,

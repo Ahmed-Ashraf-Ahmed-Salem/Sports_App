@@ -16,6 +16,8 @@ class TheLeaguesDetailsViewController: UIViewController {
     var  chosen_sport : String = ""
     var  leagueTeams : [Team] = []
     var upcomingEvents: [Event]?
+    var latestEvents: [Event]?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var favBtn: UIBarButtonItem!
@@ -43,7 +45,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-       
+        self.getLatestEvents()
         self.getLeaguesEvents()
         self.getLeagueTeams()
         //collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
@@ -84,6 +86,16 @@ class TheLeaguesDetailsViewController: UIViewController {
            //     print(events)
            //     self.upcomingEvents?.append(contentsOf: events)
                 self.upcomingEvents = events
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    func getLatestEvents(){
+        NetworkManager.getLatestEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
+            if let events = events{
+           //     print(events)
+           //     self.upcomingEvents?.append(contentsOf: events)
+                self.latestEvents = events
                 self.collectionView.reloadData()
             }
         }
@@ -229,7 +241,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
             return upcomingEvents?.count ?? 0
         }
         else if (section == 1){
-            return upcomingEvents?.count ?? 0
+            return   latestEvents?.count ?? 0
         }
         else {
             return leagueTeams.count
@@ -256,7 +268,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
             }
             arrFiltered = upcomingEvents
       */
-            cell.setup(event: upcomingEvents?[indexPath.row])
+            cell.setup(event: latestEvents?[indexPath.row])
             return cell
         }
         else {
