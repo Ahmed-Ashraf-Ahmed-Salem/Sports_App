@@ -45,10 +45,13 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "leagueEvents") as! TheLeaguesDetailsViewController
         vc.leagueID = Int(favoriteArray[indexPath.row].league_key )
+        
+        print(Int(favoriteArray[indexPath.row].league_key ))
+        print(vc.chosen_sport)
        // vc.l = favoriteArray[indexPath.row]
         //vc.chosen_sport = self.chosen_Sports
-        print(favoriteArray[indexPath.row].league_key )
-        self.navigationController?.pushViewController(vc, animated: true)
+        //self.present(vc, animated: true)
+      
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="344.61538461538458" y="-481.27962085308053"/>
+            <point key="canvasLocation" x="1001" y="337"/>
         </scene>
         <!--English League Championship-->
         <scene sceneID="4sV-mL-ANf">
@@ -117,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nai-Mn-IKk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="373.84615384615381" y="1144.5497630331754"/>
+            <point key="canvasLocation" x="169" y="1144"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="MyQ-wi-pGw">
@@ -276,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pe-VG-goW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7" y="1837"/>
+            <point key="canvasLocation" x="1114" y="1144"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="wB7-hj-xxj">
@@ -327,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6W-rd-c8i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.5190839694656" y="855.63380281690149"/>
+            <point key="canvasLocation" x="-825" y="486"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="6BQ-59-Gyp">
@@ -362,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z93-bN-ub4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-758.01526717557249" y="-158.45070422535213"/>
+            <point key="canvasLocation" x="-2120" y="-96"/>
         </scene>
         <!--Sports Home Screen-->
         <scene sceneID="pXs-Bv-de3">
@@ -437,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxS-gO-kaG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270.9923664122136" y="192.95774647887325"/>
+            <point key="canvasLocation" x="169" y="368"/>
         </scene>
         <!--TabBC-->
         <scene sceneID="Zms-xb-7CJ">
@@ -455,11 +455,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mqg-SM-kzx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-563" y="498"/>
+            <point key="canvasLocation" x="-805" y="-401"/>
         </scene>
         <!--Sports-->
         <scene sceneID="UxY-rd-UMG">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eFQ-B4-qih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xSd-9G-pXN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sports" image="sportscourt" catalog="system" id="z3f-Qn-kpz"/>
                     <toolbarItems/>
@@ -472,9 +473,8 @@
                         <segue destination="xOg-4z-omM" kind="relationship" relationship="rootViewController" id="EpC-YK-vU6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eFQ-B4-qih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="344.27480916030532" y="192.95774647887325"/>
+            <point key="canvasLocation" x="170" y="-429"/>
         </scene>
     </scenes>
     <resources>

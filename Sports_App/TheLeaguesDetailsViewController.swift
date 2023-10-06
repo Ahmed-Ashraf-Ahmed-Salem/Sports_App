@@ -29,12 +29,18 @@ class TheLeaguesDetailsViewController: UIViewController {
         
     loadFromCoreData()
         for favorite in favoriteArray{
-            if(favorite.league_name == l.league_name){
+            if(favorite.league_key == leagueID){
                 fav = true
                 favBtn.tintColor = .red
                 favBtn.image = UIImage(systemName: "heart.fill")
             }
         }
+        print(chosen_sport)
+        print(leagueID)
+        self.getLatestEvents()
+        self.getLeaguesEvents()
+        self.getLeagueTeams()
+        self.collectionView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -141,6 +147,8 @@ class TheLeaguesDetailsViewController: UIViewController {
             favBtn.image = UIImage(systemName: "heart")
             
             for i in 0...favoriteArray.count-1{
+                print(favoriteArray.count-1)
+                print(i)
                 if(favoriteArray[i].league_key == Int32(l.league_key!)){
                     context.delete(favoriteArray[i])
 
@@ -148,9 +156,11 @@ class TheLeaguesDetailsViewController: UIViewController {
                  
                     do{
                         try context.save()
+                        break
                     }
                     catch{
                         print(error.localizedDescription)
+                        break
                     }
                 }
             }
