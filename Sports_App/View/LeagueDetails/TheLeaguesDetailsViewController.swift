@@ -18,6 +18,9 @@ class TheLeaguesDetailsViewController: UIViewController {
     var upcomingEvents: [Event]?
     var latestEvents: [Event]?
     
+    // My View Model Var
+    var teamDetail: TeamsViewModel? = TeamsViewModel()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var favBtn: UIBarButtonItem!
@@ -39,7 +42,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         print(leagueID)
         self.getLatestEvents()
         self.getLeaguesEvents()
-        self.getLeagueTeams()
+ //       self.getLeagueTeams()
         self.collectionView.reloadData()
     }
     
@@ -53,7 +56,14 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.delegate = self
         self.getLatestEvents()
         self.getLeaguesEvents()
-        self.getLeagueTeams()
+ //       self.getLeagueTeams()
+        teamDetail?.getLeagueTeams(LeagueId: leagueID, chosen_sport: chosen_sport)
+        
+        teamDetail?.bindingData = {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
 
 
         let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
@@ -72,6 +82,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
         
     }
+    /*
     func getLeagueTeams (){
         NetworkManager.getTeams(LeagueId: leagueID, chosen_sport: chosen_sport) { teamslist, error in
             if let allTeams = teamslist {
@@ -80,6 +91,7 @@ class TheLeaguesDetailsViewController: UIViewController {
             }
         }
     }
+     */
     func getLeaguesEvents(){
         NetworkManager.getEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
             if let events = events{
@@ -181,15 +193,8 @@ class TheLeaguesDetailsViewController: UIViewController {
             }
         }
         loadFromCoreData()
-
-                
-            }
+    }
         
-        
-        
-        
-        
-    
     
     func teamsSection()-> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
@@ -269,7 +274,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
             return   latestEvents?.count ?? 0
         }
         else {
-            return leagueTeams.count
+            return teamDetail?.getTeams()?.count ?? 0
         }
         
     }
@@ -288,7 +293,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell" , for: indexPath) as! TeamCollectionViewCell
-            cell.setupCell(team: leagueTeams[indexPath.row])
+            cell.setupCell(team: (teamDetail?.getTeam(indexPath: indexPath))!)
             return cell
         }
         
@@ -298,7 +303,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (indexPath.section == 2) {
             let vc = storyboard?.instantiateViewController(identifier: "TeamsVC") as! TeamDetailsViewController
-            vc.team = leagueTeams[indexPath.row] 
+            vc.team = teamDetail?.getTeam(indexPath: indexPath)
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

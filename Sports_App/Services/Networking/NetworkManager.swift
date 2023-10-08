@@ -104,8 +104,9 @@ class NetworkManager: Network{
         }
     static func getLeagues(chosen_sport : String , completionHandler : @escaping([League]?,Error?)-> Void){
        
-       
-        AF.request("https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Leagues&APIkey=f0b6949f038454e6ea83893c1a14440a4d4dc977428cb739465fd63304157032",method: .post,
+       let leagueURL = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Leagues&APIkey=f0b6949f038454e6ea83893c1a14440a4d4dc977428cb739465fd63304157032"
+        
+        AF.request(leagueURL,method: .post,
                    parameters: nil,
                    encoding: URLEncoding.default, headers: nil).response{
             (response:DataResponse)  in
