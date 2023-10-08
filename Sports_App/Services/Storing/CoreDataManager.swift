@@ -9,11 +9,6 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol CoreDataProtocol{
-    func addingToCoreData(league:League)
-    func loadFromCoreData()->[FavoriteLeagues]
-    func deleteFromCoreData(key:Int)
-}
 class CoreDataManager : CoreDataProtocol{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var favoriteArray = [FavoriteLeagues]()
@@ -50,25 +45,25 @@ class CoreDataManager : CoreDataProtocol{
     func deleteFromCoreData(key:Int){
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"FavoriteLeagues")
                 fetchRequest.predicate = NSPredicate(format: "league_key = %@", "\(key)")
-                do
-                {
-                    let fetchedResults =  try context.fetch(fetchRequest) as? [NSManagedObject]
+        do
+        {
+            let fetchedResults =  try context.fetch(fetchRequest) as? [NSManagedObject]
 
-                    for entity in fetchedResults! {
+            for entity in fetchedResults! {
 
-                        context.delete(entity)
-                   }
-                    do{
-                        try context.save()
-                    }
-                    catch{
-                        print(error.localizedDescription)
-                    }
-                }
-                catch _ {
-                    print("Could not delete")
+                context.delete(entity)
+           }
+            do{
+                try context.save()
+            }
+            catch{
+                print(error.localizedDescription)
+            }
+        }
+        catch _ {
+            print("Could not delete")
 
-                }
+        }
     }
     
 }
