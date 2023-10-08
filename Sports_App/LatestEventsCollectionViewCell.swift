@@ -22,6 +22,12 @@ class LatestEventsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         img.layer.cornerRadius = 40
+        img.layer.cornerRadius = 40
+        team1Label.textColor = .black
+        timeLabel.textColor = .black
+        dateLabel.textColor = .black
+        team2Label.textColor = .black
+        scoreLabel.textColor = .black
         
     }
     

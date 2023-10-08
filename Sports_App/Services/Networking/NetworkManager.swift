@@ -34,7 +34,7 @@ class NetworkManager: Network{
     private static func getNextWeekDate() -> String{
         let currentDate = Date()
         let calendar = Calendar.current
-        let nextWeekDate = calendar.date(byAdding: .day, value: 7, to: currentDate)
+        let nextWeekDate = calendar.date(byAdding: .day, value: 14, to: currentDate)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let nextWeekDateString = dateFormatter.string(from: nextWeekDate!)

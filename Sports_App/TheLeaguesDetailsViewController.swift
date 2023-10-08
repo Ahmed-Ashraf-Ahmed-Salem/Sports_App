@@ -283,16 +283,6 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
         }
         else if (indexPath.section==1){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
-     /*       var arrFiltered = upcomingEvents
-            var i: Int = 1
-            while(upcomingEvents?.count ?? 0 >= i){
-                if(upcomingEvents?[indexPath.row].event_home_team == "" && upcomingEvents?[indexPath.row].event_away_team == ""){
-                    upcomingEvents?.remove(at: indexPath.row)
-                }
-                i = i + 1
-            }
-            arrFiltered = upcomingEvents
-      */
             cell.setup(event: latestEvents?[indexPath.row])
             return cell
         }
@@ -308,8 +298,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (indexPath.section == 2) {
             let vc = storyboard?.instantiateViewController(identifier: "TeamsVC") as! TeamDetailsViewController
-            vc.teamNameSTR = leagueTeams[indexPath.row].team_name ?? "NO Name"
-            vc.TeamLogoURLSTR = leagueTeams[indexPath.row].team_logo ?? "real"
+            vc.team = leagueTeams[indexPath.row] 
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -332,8 +321,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
                 
                 return sectionHeader
             case 1 :
-               // let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
-                
+              
                 
                 sectionHeader.HeaderTitle?.text = "Latest Events"
                 

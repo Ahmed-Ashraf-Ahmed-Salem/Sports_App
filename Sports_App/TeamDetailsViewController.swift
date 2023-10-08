@@ -9,8 +9,7 @@ import UIKit
 
 class TeamDetailsViewController: UIViewController {
 
-    var teamNameSTR : String = ""
-    var TeamLogoURLSTR : String = ""
+    var team : Team?
     @IBOutlet weak var youtubeBtn: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -33,8 +32,8 @@ class TeamDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        teamName.text = teamNameSTR
-        let TeamlogoURL = URL(string: TeamLogoURLSTR)
+        teamName.text = team?.team_name
+        let TeamlogoURL = URL(string: team?.team_logo ?? "")
         teamLogo.kf.setImage(with: TeamlogoURL)
         greyView.layer.cornerRadius = 15
         officialWebsiteBtn.layer.cornerRadius = 10
@@ -91,16 +90,19 @@ class TeamDetailsViewController: UIViewController {
 
 extension TeamDetailsViewController : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return team?.players?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayerCollectionViewCell" , for: indexPath) as! PlayerCollectionViewCell
-       
+        if let player  = team?.players?[indexPath.row] {
+            cell.setUP(player:player )
+        }
+            
+      
         return cell
         
     }
-    
     func supplementtryHeader()->NSCollectionLayoutBoundarySupplementaryItem{
         
         .init(layoutSize: .init(widthDimension:.fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top )

@@ -21,6 +21,11 @@ class EventsCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         eventImage.layer.cornerRadius = 25
+        eventImage.layer.cornerRadius = 25
+        team1Label.textColor = .black
+        timeLabel.textColor = .black
+        dateLabel.textColor = .black
+        team2Label.textColor = .black
     }
 
     func setup(event: Event?){
