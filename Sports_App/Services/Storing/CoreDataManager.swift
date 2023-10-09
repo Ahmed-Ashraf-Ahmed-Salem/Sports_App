@@ -10,16 +10,41 @@ import CoreData
 import UIKit
 
 class CoreDataManager : CoreDataProtocol{
+   
+    
+    var fav: Bool?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var favoriteArray = [FavoriteLeagues]()
 
-    func addingToCoreData(league:League) {
+    func checkFav(id:Int)->Bool{
+        self.loadFromCoreData()
+        for favorite in favoriteArray{
+            if(favorite.league_key == id){
+                return true
+            }
+        }
+        return false
+    }
+    func addingToCoreData( l:League , chosen_sport :String) {
+        self.loadFromCoreData()
         let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
         let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
-        //adding favorite attribute
         
-        favLeague.setValue( league.league_key, forKey: "league_key")
-         favLeague.setValue(league.league_name, forKey: "league_name")
+        favLeague.league_name = l.league_name
+        favLeague.league_key = Int32(l.league_key!)
+        favLeague.sport_type = chosen_sport
+        
+        let imageUrl = URL(string: l.league_logo!)
+        
+        let imageData = try! Data(contentsOf: imageUrl!)
+
+        let image = UIImage(data: imageData)
+        let img = image!.pngData();
+
+        favLeague.league_logo = img; //<--Image data is stored in the core data entity.
+
+        
+        print(favLeague.league_name)
         favoriteArray.append(favLeague)
         
         do{
@@ -31,39 +56,47 @@ class CoreDataManager : CoreDataProtocol{
 
     }
     
-    func loadFromCoreData()->[FavoriteLeagues]{
+    func loadFromCoreData() {
+        self.favoriteArray = []
         let request :NSFetchRequest<FavoriteLeagues> = FavoriteLeagues.fetchRequest()
         do {
-            favoriteArray = try context.fetch(request)
+            self.favoriteArray = try context.fetch(request)
         }
         catch{
             print(error.localizedDescription)
         }
-        return favoriteArray
-
     }
     func deleteFromCoreData(key:Int){
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"FavoriteLeagues")
-                fetchRequest.predicate = NSPredicate(format: "league_key = %@", "\(key)")
-        do
-        {
-            let fetchedResults =  try context.fetch(fetchRequest) as? [NSManagedObject]
-
-            for entity in fetchedResults! {
-
-                context.delete(entity)
-           }
-            do{
-                try context.save()
-            }
-            catch{
-                print(error.localizedDescription)
+        for i in 0...favoriteArray.count-1{
+            print(favoriteArray.count-1)
+            print(i)
+            if(favoriteArray[i].league_key == Int32(key)){
+                context.delete(favoriteArray[i])
+                
+                favoriteArray.remove(at:i)
+                
+                do{
+                    try context.save()
+                    break
+                }
+                catch{
+                    print(error.localizedDescription)
+                    break
+                }
             }
         }
-        catch _ {
-            print("Could not delete")
-
-        }
+        
     }
-    
+        func deleteByIndexPath(index:Int){
+            context.delete(favoriteArray[index])
+
+            self.favoriteArray.remove(at: index)
+              do{
+                  try context.save()
+              }
+              catch{
+                  print(error.localizedDescription)
+              }
+        }
+
 }

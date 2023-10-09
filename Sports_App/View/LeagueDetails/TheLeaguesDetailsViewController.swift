@@ -11,7 +11,7 @@ import CoreData
 class TheLeaguesDetailsViewController: UIViewController {
     var fav : Bool = false
     var  leagueID : Int = 0
-    var l : League!
+    var l : League?
     
     var  chosen_sport : String = ""
     var  leagueTeams : [Team] = []
@@ -27,28 +27,25 @@ class TheLeaguesDetailsViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var coreDataManager = CoreDataManager()
+    
     override func viewWillAppear(_ animated: Bool) {
-      
         
-    loadFromCoreData()
-        for favorite in favoriteArray{
-            if(favorite.league_key == leagueID){
-                fav = true
-                favBtn.tintColor = .red
-                favBtn.image = UIImage(systemName: "heart.fill")
-            }
-        }
+       
         print(chosen_sport)
         print(leagueID)
         self.getLatestEvents()
         self.getLeaguesEvents()
+        if (coreDataManager.checkFav(id: leagueID)==true){
+            favBtn.tintColor = .red
+            favBtn.image = UIImage(systemName: "heart.fill")
+        }
  //       self.getLeagueTeams()
         self.collectionView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFromCoreData()
         
         
         
@@ -56,6 +53,11 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.delegate = self
         self.getLatestEvents()
         self.getLeaguesEvents()
+        if (coreDataManager.checkFav(id: leagueID  )==true){
+            favBtn.tintColor = .red
+            favBtn.image = UIImage(systemName: "heart.fill")
+        }
+
  //       self.getLeagueTeams()
         teamDetail?.getLeagueTeams(LeagueId: leagueID, chosen_sport: chosen_sport)
         
@@ -82,16 +84,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: true)
         
     }
-    /*
-    func getLeagueTeams (){
-        NetworkManager.getTeams(LeagueId: leagueID, chosen_sport: chosen_sport) { teamslist, error in
-            if let allTeams = teamslist {
-                self.leagueTeams = allTeams
-                self.collectionView.reloadData()
-            }
-        }
-    }
-     */
+
     func getLeaguesEvents(){
         NetworkManager.getEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
             if let events = events{
@@ -112,78 +105,25 @@ class TheLeaguesDetailsViewController: UIViewController {
             }
         }
     }
-    func loadFromCoreData(){
-        let request :NSFetchRequest<FavoriteLeagues> = FavoriteLeagues.fetchRequest()
-        do {
-            favoriteArray = try context.fetch(request)
-        }
-        catch{
-            print(error.localizedDescription)
-        }
-        
-    }
+ 
      
     var favoriteArray = [FavoriteLeagues]()
     @IBAction func favoriteBtn(_ sender: Any) {
-        fav.toggle()
-        loadFromCoreData()
-
-        if fav == true {
+        
+        if (coreDataManager.checkFav(id: (l?.league_key)!)==false){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
          
-            let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
-            let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
-            
-            favLeague.league_name = l.league_name
-            favLeague.league_key = Int32(l.league_key!)
-            favLeague.sport_type = chosen_sport
-            
-            let imageUrl = URL(string: l.league_logo!)
-
-            let imageData = try! Data(contentsOf: imageUrl!)
-
-            let image = UIImage(data: imageData)
-            let img = image!.pngData();
-
-            favLeague.league_logo = img; //<--Image data is stored in the core data entity.
-    
-            
-            print(favLeague.league_name)
-            favoriteArray.append(favLeague)
-            
-            do{
-                try context.save()
-            }
-            catch{
-                print(error.localizedDescription)
-            }
+            coreDataManager.addingToCoreData(l:l! , chosen_sport:chosen_sport)
 
         }
         else{
             favBtn.tintColor = .black
             favBtn.image = UIImage(systemName: "heart")
-            
-            for i in 0...favoriteArray.count-1{
-                print(favoriteArray.count-1)
-                print(i)
-                if(favoriteArray[i].league_key == Int32(l.league_key!)){
-                    context.delete(favoriteArray[i])
+            coreDataManager.deleteFromCoreData(key: l?.league_key! ?? 205)
 
-                  favoriteArray.remove(at:i)
-                 
-                    do{
-                        try context.save()
-                        break
-                    }
-                    catch{
-                        print(error.localizedDescription)
-                        break
-                    }
-                }
-            }
         }
-        loadFromCoreData()
+       
     }
         
     
@@ -191,8 +131,8 @@ class TheLeaguesDetailsViewController: UIViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
         , heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-          let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(180)
-          , heightDimension: .absolute(200))
+          let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200)
+          , heightDimension: .absolute(250))
           let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
           , subitems: [item])
           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -210,8 +150,10 @@ class TheLeaguesDetailsViewController: UIViewController {
       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
       , heightDimension: .fractionalHeight(1))
       let item = NSCollectionLayoutItem(layoutSize: itemSize)
+       
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-        , heightDimension: .absolute(220))
+        , heightDimension: .absolute(180))
+        
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
         , subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -231,7 +173,6 @@ class TheLeaguesDetailsViewController: UIViewController {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
             , heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
         , heightDimension: .absolute(225))
@@ -312,28 +253,15 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
               
                 
                 
-                sectionHeader.HeaderTitle?.text = "Upcoming Events"
-                
+                sectionHeader.HeaderTitle?.text = "Incoming Events"
                 return sectionHeader
             case 1 :
-              
-                
                 sectionHeader.HeaderTitle?.text = "Latest Events"
-                
                 return sectionHeader
-                
             case 2 :
-              //  let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
-                
-                
                 sectionHeader.HeaderTitle?.text = "Teams "
-                
                 return sectionHeader
-                
             default :
-               // let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
-                
-                
                 sectionHeader.HeaderTitle?.text = "Sports"
                 
                 return sectionHeader

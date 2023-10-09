@@ -8,7 +8,9 @@
 import Foundation
 
 protocol CoreDataProtocol{
-    func addingToCoreData(league:League)
-    func loadFromCoreData()->[FavoriteLeagues]
+    func addingToCoreData( l:League , chosen_sport :String)
+    func loadFromCoreData()
     func deleteFromCoreData(key:Int)
+    func deleteByIndexPath(index:Int)
+    func checkFav(id:Int)->Bool
 }
