@@ -11,6 +11,8 @@ import Kingfisher
 class LatestEventsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var team1img: UIImageView!
     
+    
+    @IBOutlet weak var backgroungImg: UIImageView!
     @IBOutlet weak var team1Label: UILabel!
     @IBOutlet weak var team2Img: UIImageView!
     @IBOutlet weak var img: UIImageView!
@@ -21,13 +23,13 @@ class LatestEventsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        img.layer.cornerRadius = 40
-        img.layer.cornerRadius = 40
-        team1Label.textColor = .black
-        timeLabel.textColor = .black
-        dateLabel.textColor = .black
-        team2Label.textColor = .black
-        scoreLabel.textColor = .black
+        backgroungImg.layer.cornerRadius = 40
+        //img.layer.cornerRadius = 40
+   //     team1Label.textColor = .black
+   //     timeLabel.textColor = .black
+   //     dateLabel.textColor = .black
+   //     team2Label.textColor = .black
+   //     scoreLabel.textColor = .black
         
     }
     

@@ -20,30 +20,24 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qD-Ft-XMV">
                         <rect key="frame" x="0.0" y="0.0" width="324" height="172"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="championLeagues" translatesAutoresizingMaskIntoConstraints="NO" id="bhE-ne-ZaL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="v" translatesAutoresizingMaskIntoConstraints="NO" id="bhE-ne-ZaL">
                                 <rect key="frame" x="0.0" y="0.0" width="324" height="172"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20/1/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEi-Qq-E6M">
-                                <rect key="frame" x="125" y="24" width="74" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eK-Q7-tON">
-                                <rect key="frame" x="129.5" y="7" width="65" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <rect key="frame" x="126.5" y="7" width="71.5" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.99766682100000004" green="0.99766682100000004" blue="0.99766682100000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Barcelona" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVl-E2-scH">
-                                <rect key="frame" x="233" y="136.5" width="76" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="227" y="136.5" width="82" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kql-GB-XmU">
-                                <rect key="frame" x="15" y="136.5" width="91" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="15" y="136.5" width="96.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -61,6 +55,15 @@
                                     <constraint firstAttribute="height" constant="93" id="ZJe-RF-CaC"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w4A-Cl-5AY">
+                                <rect key="frame" x="112" y="57" width="103" height="85"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20/1/2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEi-Qq-E6M">
+                                <rect key="frame" x="122" y="27" width="80" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -69,11 +72,15 @@
                             <constraint firstItem="JEi-Qq-E6M" firstAttribute="centerX" secondItem="3qD-Ft-XMV" secondAttribute="centerX" id="5jD-4v-Gnv"/>
                             <constraint firstAttribute="trailing" secondItem="bhE-ne-ZaL" secondAttribute="trailing" id="6lp-8V-VLP"/>
                             <constraint firstItem="bhE-ne-ZaL" firstAttribute="leading" secondItem="3qD-Ft-XMV" secondAttribute="leading" id="8Ek-Cp-VaW"/>
+                            <constraint firstItem="JEi-Qq-E6M" firstAttribute="top" secondItem="4eK-Q7-tON" secondAttribute="bottom" id="9JW-69-oMP"/>
                             <constraint firstItem="dNr-2w-nLO" firstAttribute="leading" secondItem="3qD-Ft-XMV" secondAttribute="leading" constant="15" id="9iR-iy-Cry"/>
-                            <constraint firstItem="JEi-Qq-E6M" firstAttribute="top" secondItem="3qD-Ft-XMV" secondAttribute="top" constant="24" id="Aqj-41-FTq"/>
+                            <constraint firstItem="w4A-Cl-5AY" firstAttribute="top" secondItem="JEi-Qq-E6M" secondAttribute="bottom" constant="10" id="Fro-AW-k6X"/>
+                            <constraint firstAttribute="bottom" secondItem="w4A-Cl-5AY" secondAttribute="bottom" constant="30" id="K76-36-934"/>
                             <constraint firstAttribute="bottom" secondItem="kql-GB-XmU" secondAttribute="bottom" constant="15" id="NsO-tp-hCt"/>
+                            <constraint firstItem="bpc-qr-qA0" firstAttribute="leading" secondItem="w4A-Cl-5AY" secondAttribute="trailing" constant="20" id="RVc-2e-9D7"/>
                             <constraint firstItem="bhE-ne-ZaL" firstAttribute="top" secondItem="3qD-Ft-XMV" secondAttribute="top" id="U7M-Sp-1iG"/>
                             <constraint firstItem="4eK-Q7-tON" firstAttribute="centerX" secondItem="3qD-Ft-XMV" secondAttribute="centerX" id="aNm-4k-UWw"/>
+                            <constraint firstItem="w4A-Cl-5AY" firstAttribute="leading" secondItem="dNr-2w-nLO" secondAttribute="trailing" constant="20" id="aW5-ac-R9x"/>
                             <constraint firstItem="4eK-Q7-tON" firstAttribute="top" secondItem="3qD-Ft-XMV" secondAttribute="top" constant="7" id="euD-7g-tbj"/>
                             <constraint firstItem="kql-GB-XmU" firstAttribute="top" secondItem="dNr-2w-nLO" secondAttribute="bottom" constant="11.5" id="g2u-up-YSM"/>
                             <constraint firstAttribute="bottom" secondItem="SVl-E2-scH" secondAttribute="bottom" constant="15" id="lPL-C6-MBA"/>
@@ -93,21 +100,22 @@
             </constraints>
             <size key="customSize" width="324" height="172"/>
             <connections>
+                <outlet property="backgroundImg" destination="bhE-ne-ZaL" id="ZtE-Ta-jgR"/>
                 <outlet property="dateLabel" destination="JEi-Qq-E6M" id="20h-AA-jp0"/>
-                <outlet property="eventImage" destination="bhE-ne-ZaL" id="Yhe-98-w6v"/>
+                <outlet property="eventImage" destination="w4A-Cl-5AY" id="NoF-iE-7gO"/>
                 <outlet property="team1Img" destination="dNr-2w-nLO" id="FVw-LY-wn1"/>
                 <outlet property="team1Label" destination="kql-GB-XmU" id="0Z0-VA-fxO"/>
                 <outlet property="team2Img" destination="bpc-qr-qA0" id="DP2-AT-x9W"/>
                 <outlet property="team2Label" destination="SVl-E2-scH" id="YYT-IU-OHi"/>
                 <outlet property="timeLabel" destination="4eK-Q7-tON" id="CLz-9t-2Ug"/>
             </connections>
-            <point key="canvasLocation" x="330.43478260869568" y="121.875"/>
+            <point key="canvasLocation" x="263.768115942029" y="101.78571428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="barca" width="360" height="365"/>
-        <image name="championLeagues" width="1920" height="1080"/>
         <image name="real" width="900" height="900"/>
+        <image name="v" width="1002" height="564"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

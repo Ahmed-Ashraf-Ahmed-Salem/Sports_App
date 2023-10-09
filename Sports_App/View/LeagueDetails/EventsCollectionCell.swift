@@ -10,6 +10,7 @@ import Kingfisher
 
 class EventsCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var team2Img: UIImageView!
     @IBOutlet weak var team1Img: UIImageView!
     @IBOutlet weak var eventImage: UIImageView!
@@ -20,12 +21,12 @@ class EventsCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        eventImage.layer.cornerRadius = 25
-        eventImage.layer.cornerRadius = 25
-        team1Label.textColor = .black
-        timeLabel.textColor = .black
-        dateLabel.textColor = .black
-        team2Label.textColor = .black
+       backgroundImg.layer.cornerRadius = 25
+       // eventImage.layer.cornerRadius = 25
+       // team1Label.textColor = .black
+      //  timeLabel.textColor = .black
+      //  dateLabel.textColor = .black
+      //  team2Label.textColor = .black
     }
 
     func setup(event: Event?){

@@ -191,8 +191,8 @@ class TheLeaguesDetailsViewController: UIViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
         , heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-          let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200)
-          , heightDimension: .absolute(250))
+          let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(180)
+          , heightDimension: .absolute(200))
           let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
           , subitems: [item])
           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -210,8 +210,8 @@ class TheLeaguesDetailsViewController: UIViewController {
       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
       , heightDimension: .fractionalHeight(1))
       let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90)
-        , heightDimension: .absolute(180))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
+        , heightDimension: .absolute(220))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
         , subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -231,7 +231,6 @@ class TheLeaguesDetailsViewController: UIViewController {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
             , heightDimension: .fractionalHeight(1))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
@@ -313,7 +312,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
               
                 
                 
-                sectionHeader.HeaderTitle?.text = "Incoming Events"
+                sectionHeader.HeaderTitle?.text = "Upcoming Events"
                 
                 return sectionHeader
             case 1 :
