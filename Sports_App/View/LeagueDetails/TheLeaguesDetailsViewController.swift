@@ -14,59 +14,48 @@ class TheLeaguesDetailsViewController: UIViewController {
     var l : League?
     
     var  chosen_sport : String = ""
-    var  leagueTeams : [Team] = []
-    var upcomingEvents: [Event]?
-    var latestEvents: [Event]?
     
     // My View Model Var
-    var teamDetail: TeamsViewModel? = TeamsViewModel()
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var favBtn: UIBarButtonItem!
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var leagueDetails: LeagueDetailsViewModel? = LeagueDetailsViewModel()
     var coreDataManager = CoreDataManager()
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var favBtn: UIBarButtonItem!
+    
     override func viewWillAppear(_ animated: Bool) {
-        
-       
-        print(chosen_sport)
-        print(leagueID)
-        self.getLatestEvents()
-        self.getLeaguesEvents()
         if (coreDataManager.checkFav(id: leagueID)==true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
- //       self.getLeagueTeams()
         self.collectionView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+
         collectionView.dataSource = self
         collectionView.delegate = self
-        self.getLatestEvents()
-        self.getLeaguesEvents()
+
         if (coreDataManager.checkFav(id: leagueID  )==true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
 
- //       self.getLeagueTeams()
-        teamDetail?.getLeagueTeams(LeagueId: leagueID, chosen_sport: chosen_sport)
+        leagueDetails?.getLeagueTeams(LeagueId: leagueID, chosen_sport: chosen_sport)
         
-        teamDetail?.bindingData = {
+        leagueDetails?.bindingData = {team, error in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
-
+        
+        leagueDetails?.getLeaguesEvents(leagueID: leagueID, chosen_sport: chosen_sport)
+        leagueDetails?.getLatestEvents(leagueID: leagueID, chosen_sport: chosen_sport)
+        leagueDetails?.bindingResult = {result, error in
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
 
         let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
                     switch sectionIndex {
@@ -85,29 +74,6 @@ class TheLeaguesDetailsViewController: UIViewController {
         
     }
 
-    func getLeaguesEvents(){
-        NetworkManager.getEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
-            if let events = events{
-           //     print(events)
-           //     self.upcomingEvents?.append(contentsOf: events)
-                self.upcomingEvents = events
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    func getLatestEvents(){
-        NetworkManager.getLatestEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
-            if let events = events{
-           //     print(events)
-           //     self.upcomingEvents?.append(contentsOf: events)
-                self.latestEvents = events
-                self.collectionView.reloadData()
-            }
-        }
-    }
- 
-     
-    var favoriteArray = [FavoriteLeagues]()
     @IBAction func favoriteBtn(_ sender: Any) {
         
         if (coreDataManager.checkFav(id: (l?.league_key)!)==false){
@@ -199,13 +165,13 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(section == 0){
-            return upcomingEvents?.count ?? 0
+            return leagueDetails?.getEvents()?.count ?? 0
         }
         else if (section == 1){
-            return   latestEvents?.count ?? 0
+            return   leagueDetails?.getEvents()?.count ?? 0
         }
         else {
-            return teamDetail?.getTeams()?.count ?? 0
+            return leagueDetails?.getTeams()?.count ?? 0
         }
         
     }
@@ -214,17 +180,17 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     //    var cell : UICollectionViewCell?
         if(indexPath.section==0){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventsCollectionCell" , for: indexPath) as! EventsCollectionCell
-            cell.setup(event: upcomingEvents?[indexPath.row])
+            cell.setup(event: leagueDetails?.getEvent(indexPath: indexPath))
             return cell
         }
         else if (indexPath.section==1){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LatestEventsCollectionViewCell" , for: indexPath) as! LatestEventsCollectionViewCell
-            cell.setup(event: latestEvents?[indexPath.row])
+            cell.setup(event: leagueDetails?.getEvent(indexPath: indexPath))
             return cell
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionViewCell" , for: indexPath) as! TeamCollectionViewCell
-            cell.setupCell(team: (teamDetail?.getTeam(indexPath: indexPath))!)
+            cell.setupCell(team: (leagueDetails?.getTeam(indexPath: indexPath))!)
             return cell
         }
         
@@ -234,7 +200,7 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (indexPath.section == 2) {
             let vc = storyboard?.instantiateViewController(identifier: "TeamsVC") as! TeamDetailsViewController
-            vc.team = teamDetail?.getTeam(indexPath: indexPath)
+            vc.team = leagueDetails?.getTeam(indexPath: indexPath)
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -266,7 +232,6 @@ extension TheLeaguesDetailsViewController :UICollectionViewDelegate , UICollecti
                 
                 return sectionHeader
             }
-            
         }
         return UICollectionViewCell()
     }

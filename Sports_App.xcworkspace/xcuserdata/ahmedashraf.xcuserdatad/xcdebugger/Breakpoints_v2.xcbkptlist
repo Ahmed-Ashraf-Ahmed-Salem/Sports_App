@@ -39,54 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "086CDD90-B7E4-48DA-AE09-F4A31D83AAEE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sports_App/View/LeagueDetails/TheLeaguesDetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "086CDD90-B7E4-48DA-AE09-F4A31D83AAEE - 46e7aa009095da20"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Sports_App.TheLeaguesDetailsViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Sports_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahmedashraf/Desktop/SportApp/Sports_App/Sports_App/View/LeagueDetails/TheLeaguesDetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "728">
-               </Location>
-               <Location
-                  uuid = "086CDD90-B7E4-48DA-AE09-F4A31D83AAEE - 223ab6d0d7d6bb3c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Sports_App.TheLeaguesDetailsViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Sports_App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahmedashraf/Desktop/SportApp/Sports_App/Sports_App/View/LeagueDetails/TheLeaguesDetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "151">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D798FD94-B14D-4656-85A0-D0472EE5A7CC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

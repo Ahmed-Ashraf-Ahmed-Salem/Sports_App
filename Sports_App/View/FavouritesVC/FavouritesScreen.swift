@@ -70,10 +70,14 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
       if editingStyle == .delete {
-        print("Deleted")
-          coreDataManger.deleteByIndexPath(index: indexPath.row)
-          self.getdata()
-          self.tableView.deleteRows(at: [indexPath], with: .automatic)
+          let alert = UIAlertController(title: "Delete Event", message: "Are You Sure You Want To Delete This Event?", preferredStyle: UIAlertController.Style.alert)
+          alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+              self.coreDataManger.deleteByIndexPath(index: indexPath.row)
+              self.getdata()
+              self.tableView.deleteRows(at: [indexPath], with: .automatic)
+          }))
+          alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: nil))
+          self.present(alert, animated: true, completion: nil)
 
       }
     }

@@ -25,7 +25,7 @@ class CoreDataManager : CoreDataProtocol{
         }
         return false
     }
-    func addingToCoreData( l:League , chosen_sport :String) {
+    func addingToCoreData(l:League , chosen_sport :String) {
         self.loadFromCoreData()
         let favEntity = NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
         let favLeague = NSManagedObject(entity: favEntity, insertInto: context) as! FavoriteLeagues
@@ -35,7 +35,7 @@ class CoreDataManager : CoreDataProtocol{
         favLeague.sport_type = chosen_sport
         
         let imageUrl = URL(string: l.league_logo!)
-        
+ //       print(imageUrl)
         let imageData = try! Data(contentsOf: imageUrl!)
 
         let image = UIImage(data: imageData)
