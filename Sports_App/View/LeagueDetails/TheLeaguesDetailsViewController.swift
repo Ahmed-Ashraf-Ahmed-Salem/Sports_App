@@ -23,7 +23,7 @@ class TheLeaguesDetailsViewController: UIViewController {
     @IBOutlet weak var favBtn: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
-        if (coreDataManager.checkFav(id: leagueID)==true){
+        if (coreDataManager.checkFav(id: leagueID) == true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
@@ -36,7 +36,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        if (coreDataManager.checkFav(id: leagueID  )==true){
+        if (coreDataManager.checkFav(id: leagueID ) == true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }

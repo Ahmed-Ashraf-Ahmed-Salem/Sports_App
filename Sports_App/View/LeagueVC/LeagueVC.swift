@@ -9,12 +9,11 @@ import UIKit
 
 class LeagueVC: UIViewController {
     
-    var allLeagues : [League] = []
     var chosen_Sports : String = ""
     
     @IBOutlet weak var LeagueTableView: UITableView!
     
-    var leagueeeViewModel: LeagueViewModel! = LeagueViewModel()
+    var leagueViewModel: LeagueViewModel! = LeagueViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +21,8 @@ class LeagueVC: UIViewController {
         LeagueTableView.dataSource = self
         LeagueTableView.register(UINib(nibName: "LeagueCell", bundle: nil), forCellReuseIdentifier: "leagueCell")
         
-        leagueeeViewModel?.getAllLeagues(chosen_Sports: chosen_Sports)
-        leagueeeViewModel?.bindingData =  { leagues, error in
+        leagueViewModel?.getAllLeagues(chosen_Sports: chosen_Sports)
+        leagueViewModel?.bindingData =  { leagues, error in
         DispatchQueue.main.async {
             self.LeagueTableView.reloadData()
         }
@@ -38,22 +37,21 @@ class LeagueVC: UIViewController {
 }
 extension LeagueVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leagueeeViewModel.getLeagues()?.count ?? 0
+        return leagueViewModel.getLeagues()?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = LeagueTableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueCell
-        cell.setUpCell(league: leagueeeViewModel.getLeague(indexPath: indexPath)!)
+        cell.setUpCell(league: leagueViewModel.getLeague(indexPath: indexPath)!)
         
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "leagueEvents") as! TheLeaguesDetailsViewController
-        vc.leagueID = leagueeeViewModel.getLeague(indexPath: indexPath)?.league_key ?? 207
-        vc.l = leagueeeViewModel.getLeague(indexPath: indexPath)
+        vc.leagueID = leagueViewModel.getLeague(indexPath: indexPath)?.league_key ?? 207
+        vc.l = leagueViewModel.getLeague(indexPath: indexPath)
         vc.chosen_sport = self.chosen_Sports
         
- //       print(allLeagues[indexPath.row].league_key ?? 0 )
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
