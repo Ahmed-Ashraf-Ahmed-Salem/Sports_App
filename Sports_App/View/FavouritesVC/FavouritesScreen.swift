@@ -40,9 +40,9 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueCell
         
         cell.leagueName.text = favoriteArray[indexPath.row].league_name
-       // let unencodedData = Data(base64Encoded: favoriteArray[indexPath.row].league_logo!)!
-      //  let image = UIImage(data: unencodedData)
-      //  cell.leagueImage = UIImageView(image: image)
+        let unencodedData = favoriteArray[indexPath.row].league_logo
+        let image = UIImage(data: unencodedData!)
+        cell.leagueImage.image = image
         
         return cell
     }

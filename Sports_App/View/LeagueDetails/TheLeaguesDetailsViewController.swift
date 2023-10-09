@@ -138,25 +138,16 @@ class TheLeaguesDetailsViewController: UIViewController {
             favLeague.league_name = l.league_name
             favLeague.league_key = Int32(l.league_key!)
             favLeague.sport_type = chosen_sport
-            let img : UIImage
-            let url = URL(string:l.league_logo!)
-              if let data = try? Data(contentsOf: url!)
-              {
-                  img = UIImage(data: data)!
-                  let jpegImageData = img.jpegData(compressionQuality: 1.0)
-                  let pngImageData  = img.pngData()
-                  
-                  let entityName =  NSEntityDescription.entity(forEntityName: "FavoriteLeagues", in: context)!
-                  let image = NSManagedObject(entity: entityName, insertInto: context) as! FavoriteLeagues
-                  //image.setValue(jpegImageData, forKeyPath: "league_logo")
-                  favLeague.league_logo = pngImageData
-                  do {
-                    try context.save()
-                  } catch let error as NSError {
-                    print("Could not save. \(error), \(error.userInfo)")
-                  }
-              }
             
+            let imageUrl = URL(string: l.league_logo!)
+
+            let imageData = try! Data(contentsOf: imageUrl!)
+
+            let image = UIImage(data: imageData)
+            let img = image!.pngData();
+
+            favLeague.league_logo = img; //<--Image data is stored in the core data entity.
+    
             
             print(favLeague.league_name)
             favoriteArray.append(favLeague)
