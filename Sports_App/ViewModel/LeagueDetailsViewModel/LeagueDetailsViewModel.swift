@@ -8,6 +8,7 @@
 import Foundation
 
 class LeagueDetailsViewModel{
+    var coreDataManager = CoreDataManager()
     var teamsArray: [Team]? {
         didSet {
             bindingData(teamsArray,nil)

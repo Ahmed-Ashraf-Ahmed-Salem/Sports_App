@@ -17,13 +17,13 @@ class TheLeaguesDetailsViewController: UIViewController {
     
     // My View Model Var
     var leagueDetails: LeagueDetailsViewModel? = LeagueDetailsViewModel()
-    var coreDataManager = CoreDataManager()
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var favBtn: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
-        if (coreDataManager.checkFav(id: leagueID) == true){
+        if (leagueDetails?.coreDataManager.checkFav(id: leagueID) == true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
@@ -36,7 +36,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        if (coreDataManager.checkFav(id: leagueID ) == true){
+        if (leagueDetails?.coreDataManager.checkFav(id: leagueID ) == true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
@@ -76,17 +76,17 @@ class TheLeaguesDetailsViewController: UIViewController {
 
     @IBAction func favoriteBtn(_ sender: Any) {
         
-        if (coreDataManager.checkFav(id: (l?.league_key)!)==false){
+        if (leagueDetails?.coreDataManager.checkFav(id: (l?.league_key)!)==false){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
          
-            coreDataManager.addingToCoreData(l:l! , chosen_sport:chosen_sport)
+            leagueDetails?.coreDataManager.addingToCoreData(l:l! , chosen_sport:chosen_sport)
 
         }
         else{
             favBtn.tintColor = .black
             favBtn.image = UIImage(systemName: "heart")
-            coreDataManager.deleteFromCoreData(key: l?.league_key! ?? 205)
+            leagueDetails?.coreDataManager.deleteFromCoreData(key: l?.league_key! ?? 205)
 
         }
        
