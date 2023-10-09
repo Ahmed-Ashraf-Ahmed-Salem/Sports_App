@@ -16,9 +16,7 @@ class TeamDetailsViewController: UIViewController {
     
     @IBOutlet weak var twitterBtn: UIButton!
     @IBOutlet weak var officialWebsiteBtn: UIButton!
-    @IBOutlet weak var tshirtImg: UIImageView!
-    @IBOutlet weak var greyView: UIView!
-    @IBOutlet weak var teamCity: UILabel!
+    
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamLogo: UIImageView!
     
@@ -35,7 +33,6 @@ class TeamDetailsViewController: UIViewController {
         teamName.text = team?.team_name
         let TeamlogoURL = URL(string: team?.team_logo ?? "")
         teamLogo.kf.setImage(with: TeamlogoURL)
-        greyView.layer.cornerRadius = 15
         officialWebsiteBtn.layer.cornerRadius = 10
         fbBtn.layer.cornerRadius = 0.5 * fbBtn.bounds.size.width
         fbBtn.clipsToBounds = true
@@ -65,10 +62,10 @@ class TeamDetailsViewController: UIViewController {
             
             
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-                                                  , heightDimension: .fractionalHeight(1))
+                                                  , heightDimension: .fractionalHeight(0.8))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
               let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200)
-                                                     , heightDimension: .fractionalHeight(1))
+                                                     , heightDimension: .fractionalHeight(0.7))
               let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
               , subitems: [item])
               group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -79,7 +76,7 @@ class TeamDetailsViewController: UIViewController {
               , bottom: 0, trailing: 15)
            
             section.orthogonalScrollingBehavior = .continuous
-            section.boundarySupplementaryItems = [self.supplementtryHeader()]
+           // section.boundarySupplementaryItems = [self.supplementtryHeader()]
                return section
         }
             
@@ -103,23 +100,6 @@ extension TeamDetailsViewController : UICollectionViewDelegate , UICollectionVie
         return cell
         
     }
-    func supplementtryHeader()->NSCollectionLayoutBoundarySupplementaryItem{
-        
-        .init(layoutSize: .init(widthDimension:.fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top )
-        
-    }
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader{
-            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "h", for: indexPath) as! Header
-            
-                
-                sectionHeader.HeaderTitle?.text = "Players"
-                
-                return sectionHeader
-           
-            
-        }
-        return UICollectionViewCell()
-    }
+
      
 }
