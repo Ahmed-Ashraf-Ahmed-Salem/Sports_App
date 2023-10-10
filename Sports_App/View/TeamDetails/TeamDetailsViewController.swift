@@ -10,42 +10,18 @@ import UIKit
 class TeamDetailsViewController: UIViewController {
 
     var team : Team?
-    @IBOutlet weak var youtubeBtn: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var twitterBtn: UIButton!
-    @IBOutlet weak var officialWebsiteBtn: UIButton!
-    
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamLogo: UIImageView!
-    
-    
-    @IBOutlet weak var igBtn: UIButton!
-    
-    
-    @IBOutlet weak var fbBtn: UIButton!
-    
-    
+    @IBOutlet weak var imgView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         teamName.text = team?.team_name
         let TeamlogoURL = URL(string: team?.team_logo ?? "")
         teamLogo.kf.setImage(with: TeamlogoURL)
-        officialWebsiteBtn.layer.cornerRadius = 10
-        fbBtn.layer.cornerRadius = 0.5 * fbBtn.bounds.size.width
-        fbBtn.clipsToBounds = true
-        
-        youtubeBtn.layer.cornerRadius = 0.5 * youtubeBtn.bounds.size.width
-        youtubeBtn.clipsToBounds = true
-        
-        twitterBtn.layer.cornerRadius = 0.5 * twitterBtn.bounds.size.width
-        twitterBtn.clipsToBounds = true
-        
-        igBtn.layer.cornerRadius = 0.5 * igBtn.bounds.size.width
-        igBtn.clipsToBounds = true
-        
+        imgView.image = UIImage(named: "stadium")
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -56,31 +32,22 @@ class TeamDetailsViewController: UIViewController {
             return self.playersSection()
         }
             collectionView.setCollectionViewLayout(layout, animated: true)
-        
     }
+    
     func playersSection()-> NSCollectionLayoutSection{
-            
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-                                                  , heightDimension: .fractionalHeight(0.8))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-              let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200)
-                                                     , heightDimension: .fractionalHeight(0.7))
-              let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
-              , subitems: [item])
-              group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-              , bottom: 0, trailing: 30)
-              
-              let section = NSCollectionLayoutSection(group: group)
-              section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15
-              , bottom: 0, trailing: 15)
-           
-            section.orthogonalScrollingBehavior = .continuous
-           // section.boundarySupplementaryItems = [self.supplementtryHeader()]
-               return section
-        }
-            
-        }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.8))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+          let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .fractionalHeight(0.7))
+          let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+          group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 30)
+          
+          let section = NSCollectionLayoutSection(group: group)
+          section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
+       
+ //       section.orthogonalScrollingBehavior = .continuous
+           return section
+    }
+}
     
     
 

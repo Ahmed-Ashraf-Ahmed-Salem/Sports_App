@@ -8,7 +8,8 @@
 import Foundation
 
 class LeagueViewModel{
-        
+    var networkManager: Network = NetworkManager()
+    
     var leagueArray: [League]? {
         didSet {
             bindingData(leagueArray,nil)
@@ -29,7 +30,7 @@ class LeagueViewModel{
     
     func getAllLeagues(chosen_Sports : String){
  //       let chosen_Sports = ""
-        NetworkManager.getLeagues(chosen_sport: chosen_Sports) { leagueList, error in
+        networkManager.getLeagues(chosen_sport: chosen_Sports) { leagueList, error in
             if let leagues = leagueList{
                 self.leagueArray = leagues
             }
@@ -45,19 +46,3 @@ class LeagueViewModel{
     }
      
 }
-
-/*
- func fetchLeagues() {
-         let endPoint = "search_all_leagues.php?s=\(filterSport.strSport)"
-         apiService.fetchLeagues(endPoint: endPoint) { leagues, error in
-             if let leagues = leagues {
-                 self.leagueArray = leagues.filter({leguaeItem in
-                     return leguaeItem.strSport == self.filterSport.strSport
-                 })
-             }
-             if let error = error {
-                 self.error = error
-             }
-         }
-     }
- */

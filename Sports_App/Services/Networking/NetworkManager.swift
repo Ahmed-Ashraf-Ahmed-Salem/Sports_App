@@ -9,29 +9,15 @@ import Foundation
 import Alamofire
 
 class NetworkManager: Network{
-    /*
-    func getEvents(leagueId: Int) {
-        let urlFile = "https://apiv2.allsportsapi.com/football/?met=Fixtures&leagueId=\(leagueId)&from=2023-01-18&to=2024-01-18&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
-        AF.request(urlFile).responseDecodable(of: [Events].self) { response in
-            switch response.result {
-            case .success():
-                DispatchQueue.main.async {
-                    self.eventDetails.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    */
-   private static func getDate() -> String{
+    
+   private func getDate() -> String{
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat =  "yyyy-MM-dd"
        let result = formatter.string(from: date)
                return result
     }
-    private static func getNextWeekDate() -> String{
+    private func getNextWeekDate() -> String{
         let currentDate = Date()
         let calendar = Calendar.current
         let nextWeekDate = calendar.date(byAdding: .day, value: 14, to: currentDate)
@@ -40,7 +26,7 @@ class NetworkManager: Network{
         let nextWeekDateString = dateFormatter.string(from: nextWeekDate!)
         return nextWeekDateString
     }
-    private static func getLasttWeekDate() -> String{
+    private func getLasttWeekDate() -> String{
         let currentDate = Date()
         let calendar = Calendar.current
      
@@ -54,7 +40,7 @@ class NetworkManager: Network{
 
     //let currentWeek = calendar.component(.weekOfYear, from: currentDate)
     
-    static func getLatestEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
+     func getLatestEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
         let currentdate =  getDate()
         let lastWeekDate = getLasttWeekDate()
         let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=\(lastWeekDate)&to=\(currentdate)&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
@@ -79,7 +65,8 @@ class NetworkManager: Network{
         }
       
     }
-    static func getEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
+    
+    func getEvents(leagueId: Int, chosen_sport : String, completion:(([Event]?, Error?) -> Void)?) {
         let currentdate =  getDate()
         let nextWeekDate = getNextWeekDate()
         let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Fixtures&leagueId=\(leagueId)&from=\(currentdate)&to=\(nextWeekDate)&APIkey=c820cb931b4418392a78bd8187a08f12b9e7803d64a36542c746f1f5cda4bb38"
@@ -102,7 +89,8 @@ class NetworkManager: Network{
                 }
             }
         }
-    static func getLeagues(chosen_sport : String , completionHandler : @escaping([League]?,Error?)-> Void){
+    
+    func getLeagues(chosen_sport : String , completionHandler : @escaping([League]?,Error?)-> Void){
        
        let leagueURL = "https://apiv2.allsportsapi.com/\(chosen_sport)/?met=Leagues&APIkey=f0b6949f038454e6ea83893c1a14440a4d4dc977428cb739465fd63304157032"
         
@@ -125,7 +113,8 @@ class NetworkManager: Network{
             }
         }
     }
-    static func getTeams(LeagueId : Int ,chosen_sport : String  , completionHandler : @escaping([Team]?,Error?)-> Void){
+    
+    func getTeams(LeagueId : Int ,chosen_sport : String  , completionHandler : @escaping([Team]?,Error?)-> Void){
         let urlFile = "https://apiv2.allsportsapi.com/\(chosen_sport)?met=Teams&leagueId=\(LeagueId)&APIkey=f0b6949f038454e6ea83893c1a14440a4d4dc977428cb739465fd63304157032"
         AF.request(urlFile,method: .post,
                    parameters: nil,

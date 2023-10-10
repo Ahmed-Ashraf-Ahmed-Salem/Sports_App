@@ -23,7 +23,7 @@ class TheLeaguesDetailsViewController: UIViewController {
     @IBOutlet weak var favBtn: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
-        if (leagueDetails?.coreDataManager.checkFav(id: leagueID) == true){
+        if (leagueDetails?.coreDataManager?.checkFav(id: leagueID) == true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
@@ -41,7 +41,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        if (leagueDetails?.coreDataManager.checkFav(id: leagueID ) == true){
+        if (leagueDetails?.coreDataManager?.checkFav(id: leagueID ) == true){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
@@ -81,17 +81,17 @@ class TheLeaguesDetailsViewController: UIViewController {
 
     @IBAction func favoriteBtn(_ sender: Any) {
         
-        if (leagueDetails?.coreDataManager.checkFav(id: (l?.league_key)!)==false){
+        if (leagueDetails?.coreDataManager?.checkFav(id: (l?.league_key)!)==false){
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
          
-            leagueDetails?.coreDataManager.addingToCoreData(l:l! , chosen_sport:chosen_sport)
+            leagueDetails?.coreDataManager?.addingToCoreData(l:l! , chosen_sport:chosen_sport)
 
         }
         else{
             favBtn.tintColor = .black
             favBtn.image = UIImage(systemName: "heart")
-            leagueDetails?.coreDataManager.deleteFromCoreData(key: l?.league_key! ?? 205)
+            leagueDetails?.coreDataManager?.deleteFromCoreData(key: l?.league_key! ?? 205)
 
         }
        
@@ -117,6 +117,7 @@ class TheLeaguesDetailsViewController: UIViewController {
         section.boundarySupplementaryItems = [self.supplementtryHeader()]
            return section
     }
+    
     func upcomingEventsSection()-> NSCollectionLayoutSection {
       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
       , heightDimension: .fractionalHeight(1))
@@ -147,17 +148,13 @@ class TheLeaguesDetailsViewController: UIViewController {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
         , heightDimension: .absolute(225))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
-        , subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-            , bottom: 15, trailing: 15)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 15)
             
         let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
-            , bottom: 10, trailing: 0)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 0)
         section.boundarySupplementaryItems = [self.supplementtryHeader()]
-           
-            
+        
             return section
         }
     

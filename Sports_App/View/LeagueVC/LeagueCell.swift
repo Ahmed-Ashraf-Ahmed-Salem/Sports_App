@@ -26,7 +26,7 @@ class LeagueCell: UITableViewCell {
     }
     func setUpCell(league: League){
         leagueName.text = league.league_name
-        let leagueImageURL = URL(string: league.league_logo ?? "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg")
+        let leagueImageURL = URL(string: league.league_logo ?? "https://img.freepik.com/premium-vector/esports-champion-league-badge-logo_92741-496.jpg")
         leagueImage.kf.setImage(with: leagueImageURL)
     }
     

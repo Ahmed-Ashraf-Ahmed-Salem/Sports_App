@@ -8,7 +8,11 @@
 import Foundation
 
 class LeagueDetailsViewModel{
-    var coreDataManager = CoreDataManager()
+    var networkManager: Network = NetworkManager()
+    var coreDataManager: CoreDataProtocol?
+    init(coreDataManager: CoreDataProtocol? = CoreDataManager()){
+        self.coreDataManager = coreDataManager
+    }
     var teamsArray: [Team]? {
         didSet {
             bindingData(teamsArray,nil)
@@ -30,17 +34,12 @@ class LeagueDetailsViewModel{
         }
     }
     
-    let apiService: NetworkManager
     
     var bindingData: (([Team]?,Error?) -> Void) = {_, _ in }
     var bindingResult: (([Event]?,Error?) -> Void) = {_, _ in }
     
-    init(apiService: NetworkManager = NetworkManager()) {
-        self.apiService = apiService
-    }
-    
     func getLeagueTeams (LeagueId: Int, chosen_sport: String){
-        NetworkManager.getTeams(LeagueId: LeagueId, chosen_sport: chosen_sport) { teamslist, error in
+        networkManager.getTeams(LeagueId: LeagueId, chosen_sport: chosen_sport) { teamslist, error in
             if let allTeams = teamslist {
                 self.teamsArray = allTeams
             }
@@ -56,7 +55,7 @@ class LeagueDetailsViewModel{
     }
     
     func getLeaguesEvents(leagueID: Int, chosen_sport: String){
-        NetworkManager.getEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
+        networkManager.getEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
             if let events = events{
                 self.resultArray = events
             }
@@ -64,7 +63,7 @@ class LeagueDetailsViewModel{
     }
 
     func getLatestEvents(leagueID: Int, chosen_sport: String){
-        NetworkManager.getLatestEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
+        networkManager.getLatestEvents(leagueId: leagueID, chosen_sport: chosen_sport) { events, error in
             if let events = events{
                 self.resultArray = events
             }

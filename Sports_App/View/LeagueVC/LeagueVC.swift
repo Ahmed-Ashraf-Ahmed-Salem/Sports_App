@@ -20,13 +20,13 @@ class LeagueVC: UIViewController {
         LeagueTableView.delegate = self
         LeagueTableView.dataSource = self
         LeagueTableView.register(UINib(nibName: "LeagueCell", bundle: nil), forCellReuseIdentifier: "leagueCell")
-        
+        self.navigationItem.title = "All Leagues"
         leagueViewModel?.getAllLeagues(chosen_Sports: chosen_Sports)
         leagueViewModel?.bindingData =  { leagues, error in
         DispatchQueue.main.async {
             self.LeagueTableView.reloadData()
         }
-    
+                        
     if let error = error{
         print(error.localizedDescription)
     }
