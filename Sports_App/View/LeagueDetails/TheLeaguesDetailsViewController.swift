@@ -27,6 +27,10 @@ class TheLeaguesDetailsViewController: UIViewController {
             favBtn.tintColor = .red
             favBtn.image = UIImage(systemName: "heart.fill")
         }
+        else {
+            favBtn.tintColor = .black
+            favBtn.image = UIImage(systemName: "heart")
+        }
         self.collectionView.reloadData()
     }
     
