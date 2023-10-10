@@ -51,7 +51,7 @@ extension LeagueVC : UITableViewDelegate , UITableViewDataSource {
         vc.leagueID = leagueViewModel.getLeague(indexPath: indexPath)?.league_key ?? 207
         vc.l = leagueViewModel.getLeague(indexPath: indexPath)
         vc.chosen_sport = self.chosen_Sports
-        
+        vc.name = leagueViewModel.getLeague(indexPath: indexPath)?.league_name ?? "name not found"
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

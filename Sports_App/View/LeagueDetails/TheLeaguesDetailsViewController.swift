@@ -12,7 +12,7 @@ class TheLeaguesDetailsViewController: UIViewController {
     var fav : Bool = false
     var  leagueID : Int = 0
     var l : League?
-    
+    var name : String = ""
     var  chosen_sport : String = ""
     
     // My View Model Var
@@ -33,6 +33,7 @@ class TheLeaguesDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = name
         collectionView.dataSource = self
         collectionView.delegate = self
 

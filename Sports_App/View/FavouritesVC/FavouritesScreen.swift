@@ -14,6 +14,8 @@ class FavouritesScreen: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        favouriteViewModel.getdata()
+
         self.tableView.reloadData()
     }
     override func viewDidLoad() {
